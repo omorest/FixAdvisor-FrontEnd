@@ -5,7 +5,7 @@
 
 ## Technologies
 
-- ViteJS
+- Vite
 - TypeScript
 - React
 - ChakraUI
