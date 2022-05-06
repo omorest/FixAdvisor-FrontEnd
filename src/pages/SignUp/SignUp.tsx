@@ -1,22 +1,18 @@
 import { Button, Link, Text } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SingUpFormClient from '../../components/Forms/SingUpFormClient'
+import SingUpFormProvider from '../../components/Forms/SingUpFormProvider'
 import Navbar from '../../components/Navbar/Navbar'
 
 const SignUp = () => {
   const [typeUser, setTypeUser] = useState<string>('')
-  const [typeForm, setTypeForm] = useState(null)
 
   const handleClick = (event: any) => setTypeUser(event.target.value)
 
   const typeFormComponent: any = {
     client: <SingUpFormClient/>,
-    provider: <SingUpFormClient/>
+    provider: <SingUpFormProvider/>
   }
-
-  useEffect(() => {
-    setTypeForm(typeFormComponent[typeUser] || null)
-  }, [typeUser])
 
   return (
     <>
@@ -31,7 +27,7 @@ const SignUp = () => {
             <Button value='provider' onClick={handleClick} >Proveedor de servicios</Button>
           </div>
         </div>}
-      {typeForm || null}
+      {typeFormComponent[typeUser] || null}
       <Link onClick={() => { setTypeUser('') }}>Atrás</Link>
 
     </>
