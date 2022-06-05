@@ -1,5 +1,5 @@
-import { Button, Link, Text } from '@chakra-ui/react'
 import { useState } from 'react'
+import { Button, Text } from '@chakra-ui/react'
 import SingUpFormClient from '../../components/Forms/SingUpFormClient'
 import SingUpFormProvider from '../../components/Forms/SingUpFormProvider'
 import Navbar from '../../components/Navbar/Navbar'
@@ -28,7 +28,6 @@ const SignUp = () => {
           </div>
         </div>}
       {typeFormComponent[typeUser] || null}
-      <Link onClick={() => { setTypeUser('') }}>Atrás</Link>
 
     </>
   )

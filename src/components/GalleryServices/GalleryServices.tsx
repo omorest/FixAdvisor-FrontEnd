@@ -1,4 +1,4 @@
-import { Service } from '../../api/services/modelServices'
+import { Service } from '../../models'
 import CardService from '../CardService/CardService'
 
 interface GalleryServicesProps {

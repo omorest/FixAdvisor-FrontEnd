@@ -1,10 +1,10 @@
 import { Input } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
-import { createUser } from '../../firebase/utilsFirebase'
+import { createUserClient } from '../../firebase/utilsFirebase'
 
 const SingUpFormClient = () => {
   const { register, handleSubmit } = useForm()
-  const onSubmit = (data: any) => createUser({ ...data, type: 'client' }, data.password)
+  const onSubmit = (data: any) => createUserClient({ ...data }, data.password)
 
   return (
     <div className='flex flex-col gap-5 w-[50%] items-center boder-solid border-[2px] boder-2 rounded p-5'>

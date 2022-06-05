@@ -1,7 +1,8 @@
-import { UserClient } from './modelClient'
-const urlNewclient = 'http://localhost:4000/api/users/new-client'
+import { Provider } from '../models'
 
-export function fetchPostNewClient (data: UserClient) {
+const urlNewclient = 'http://localhost:4000/api/users/new-provider'
+
+export function fetchPostNewProvider (data: Provider) {
   fetch(urlNewclient, {
     method: 'POST',
     body: JSON.stringify(data),

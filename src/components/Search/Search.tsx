@@ -1,5 +1,5 @@
-import { Input } from '@chakra-ui/react'
 import { FC } from 'react'
+import { Input } from '@chakra-ui/react'
 
 interface SearchProps {
   className?: string

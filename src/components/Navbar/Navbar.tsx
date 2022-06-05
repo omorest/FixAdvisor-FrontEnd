@@ -1,5 +1,4 @@
 import { Text } from '@chakra-ui/react'
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
@@ -9,6 +8,7 @@ const Navbar = () => {
       <nav className='flex gap-5'>
         <Link to="/">Home</Link>
         <Link to="/login">Login</Link>
+        <Link to="/new-service">New Service</Link>
       </nav>
     </div>
   )

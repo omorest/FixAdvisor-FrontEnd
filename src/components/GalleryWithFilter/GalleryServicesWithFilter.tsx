@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
-import { fetchServices } from '../../api/services'
-import { Service } from '../../api/services/modelServices'
 import GalleryServices from '../GalleryServices/GalleryServices'
+import { Service } from '../../models'
+import { fetchServices } from '../../services'
 import SortFilter from '../SortFilter/SortFilter'
 
 interface GalleryServicesWithFilterProps {
