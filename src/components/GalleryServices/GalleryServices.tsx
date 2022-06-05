@@ -1,4 +1,4 @@
-import { Service } from '../../api/services/modelServices'
+import { Service } from '../../models'
 import CardService from '../CardService/CardService'
 
 interface GalleryServicesProps {
@@ -6,7 +6,6 @@ interface GalleryServicesProps {
 }
 
 const GalleryServices = ({ services }: GalleryServicesProps) => {
-  console.log(services)
   return (
     <div className='flex gap-10'>
       {services.map((service, index) => <CardService service={service} key={index}/>)}

@@ -1,6 +1,6 @@
-import { Badge, Box, Image } from '@chakra-ui/react'
 import { FC } from 'react'
-import { Service } from '../../api/services/modelServices'
+import { Badge, Box, Image } from '@chakra-ui/react'
+import { Service } from '../../models'
 
 interface CardServiceProps {
   service: Service
@@ -14,12 +14,12 @@ const colorTypeProvider: any = {
 const CardService: FC<CardServiceProps> = ({ service }) => {
   return (
     <Box maxW='xs' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-      <Image boxSize='xs' objectFit='cover' src={service.image} alt={'image'} />
+      <Image boxSize='xs' objectFit='cover' src={service.imagesServices} alt={'image'} />
 
       <Box p='6'>
         <Box display='flex' alignItems='baseline'>
-          <Badge borderRadius='full' px='2' colorScheme={colorTypeProvider[service.type]}>
-            {service.type}
+          <Badge borderRadius='full' px='2' colorScheme={colorTypeProvider[service.typeService]}>
+            {service.typeService}
           </Badge>
         </Box>
 
