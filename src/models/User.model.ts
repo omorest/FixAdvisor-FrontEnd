@@ -2,6 +2,7 @@ export interface Client {
   email: string
   name: string
   id: string
+  type: 'Client'
 }
 
 export interface Provider {
@@ -10,6 +11,9 @@ export interface Provider {
   company: string
   location: string
   phoneNumber: number
-  logoImage?: string
+  logoImage: string
   id: string
+  servicesIds?: string[]
+  web?: string
+  type: 'Provider'
 }

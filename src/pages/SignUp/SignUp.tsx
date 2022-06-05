@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Text } from '@chakra-ui/react'
 import SingUpFormClient from '../../components/Forms/SingUpFormClient'
-import SingUpFormProvider from '../../components/Forms/SingUpFormProvider'
+import SignUpFormProvider from '../../components/Forms/SignUpFormProvider'
 import Navbar from '../../components/Navbar/Navbar'
 
 const SignUp = () => {
@@ -11,7 +11,7 @@ const SignUp = () => {
 
   const typeFormComponent: any = {
     client: <SingUpFormClient/>,
-    provider: <SingUpFormProvider/>
+    provider: <SignUpFormProvider/>
   }
 
   return (

@@ -2,7 +2,7 @@ import { Input, Text } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { createUserProvider } from '../../firebase/utilsFirebase'
 
-const SingUpFormProvider = () => {
+const SignUpFormProvider = () => {
   const { register, handleSubmit } = useForm()
 
   const onSubmit = (data: any) => createUserProvider({ ...data }, data.password)
@@ -27,4 +27,4 @@ const SingUpFormProvider = () => {
   )
 }
 
-export default SingUpFormProvider
+export default SignUpFormProvider

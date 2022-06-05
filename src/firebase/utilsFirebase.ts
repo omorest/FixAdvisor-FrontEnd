@@ -1,13 +1,18 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
+import { User } from '../context/UserContext'
 import { Client, Provider } from '../models'
-import { fetchPostNewClient, fetchPostNewProvider } from '../services'
+import { fetchClient, fetchPostNewClient, fetchPostNewProvider, fetchProvider } from '../services'
 import { auth } from './firebaseConfig'
 
-export const signInUser = (email: string, password: string) => {
+export const signInUser = (email: string, password: string, typeUser: string, setUserContext: (user: User) => void) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user
-      console.log(user)
+      if (typeUser === 'Client') {
+        fetchClient(user.uid).then((client) => setUserContext(client))
+      } else if (typeUser === 'Provider') {
+        fetchProvider(user.uid).then((provider) => setUserContext(provider))
+      }
     })
     .catch((error) => {
       const errorCode = error.code
@@ -23,7 +28,8 @@ export const createUserClient = (user: Client, password: string) => {
       const dataUserClient: Client = {
         id: userFirebase.uid,
         name: user.name,
-        email: user.email
+        email: user.email,
+        type: 'Client'
       }
       fetchPostNewClient(dataUserClient)
     })
@@ -39,10 +45,9 @@ export const createUserProvider = (user: Provider, password: string) => {
     .then((userCredential) => {
       const userFirebase = userCredential.user
       const dataUserClient: Provider = {
+        ...user,
         id: userFirebase.uid,
-        name: user.name,
-        company: user.company,
-        email: user.email
+        type: 'Provider'
       }
       fetchPostNewProvider(dataUserClient)
     })

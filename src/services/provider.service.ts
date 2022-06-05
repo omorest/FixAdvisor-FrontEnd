@@ -1,9 +1,10 @@
 import { Provider } from '../models'
 
-const urlNewclient = 'http://localhost:4000/api/users/new-provider'
+const urlNewProvider = 'http://localhost:4000/api/users/providers/new-client'
+const urlProviders = 'http://localhost:4000/api/users/providers'
 
 export function fetchPostNewProvider (data: Provider) {
-  fetch(urlNewclient, {
+  fetch(urlNewProvider, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-type': 'application/json; charset=UTF-8' }
@@ -11,4 +12,10 @@ export function fetchPostNewProvider (data: Provider) {
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(err => console.log(err))
+}
+
+export const fetchProvider = async (providerId: string) => {
+  const response = await fetch(`${urlProviders}/${providerId}`)
+  const data: Provider = await response.json()
+  return data
 }
