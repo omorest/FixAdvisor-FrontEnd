@@ -1,12 +1,11 @@
-import React from 'react'
-import InfoCompanyForm from '../../components/Forms/InfoCompanyForm'
+import ServiceForm from '../../components/Forms/ServiceForm'
 import Navbar from '../../components/Navbar/Navbar'
 
 const NewService = () => {
   return (
     <>
       <Navbar/>
-      <InfoCompanyForm/>
+      <ServiceForm/>
     </>
 
   )
