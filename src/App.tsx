@@ -14,16 +14,18 @@ function App () {
   const setUserContext = (user: User) => setUser(user)
 
   return (
-    <Container maxW='85%'>
-      <UserContext.Provider value={{ user, setUserContext }}>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<SignUp />} />
-          <Route path='/new-service' element={<NewServicePage />} />
-        </Routes>
-      </UserContext.Provider>
-    </Container>
+    <UserContext.Provider value={{ user, setUserContext }}>
+      <div className='bg-[#f9fafb]'>
+        <Container maxW='85%' >
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/new-service' element={<NewServicePage />} />
+          </Routes>
+        </Container>
+      </div>
+    </UserContext.Provider>
   )
 }
 

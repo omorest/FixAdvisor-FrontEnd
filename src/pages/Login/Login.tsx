@@ -3,13 +3,10 @@ import Navbar from '../../components/Navbar/Navbar'
 
 const Login = () => {
   return (
-    <>
+    <div className='h-[100vh]'>
       <Navbar />
-      <div className='flex flex-col items-center mt-[100px]'>
-        <SignInForm />
-        {/* <SingUpForm /> */}
-      </div>
-    </>
+      <SignInForm />
+    </div>
   )
 }
 

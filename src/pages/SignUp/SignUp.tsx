@@ -15,7 +15,7 @@ const SignUp = () => {
   }
 
   return (
-    <>
+    <div className='h-[100vh]'>
       <Navbar />
 
       {typeUser
@@ -29,7 +29,7 @@ const SignUp = () => {
         </div>}
       {typeFormComponent[typeUser] || null}
 
-    </>
+    </div>
   )
 }
 

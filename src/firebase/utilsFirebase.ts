@@ -1,23 +1,20 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
 import { User } from '../context/UserContext'
 import { Client, Provider } from '../models'
-import { fetchClient, fetchPostNewClient, fetchPostNewProvider, fetchProvider } from '../services'
+import { fetchPostNewClient, fetchPostNewProvider } from '../services'
+import { fetchUser } from '../services/user.service'
 import { auth } from './firebaseConfig'
 
-export const signInUser = (email: string, password: string, typeUser: string, setUserContext: (user: User) => void) => {
+export const signInUser = (email: string, password: string, setUserContext: (user: User) => void) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user
-      if (typeUser === 'Client') {
-        fetchClient(user.uid).then((client) => setUserContext(client))
-      } else if (typeUser === 'Provider') {
-        fetchProvider(user.uid).then((provider) => setUserContext(provider))
-      }
+      fetchUser(user)
+        .then((user) => setUserContext(user))
+        .catch((error) => console.error(error.code, error.message))
     })
     .catch((error) => {
-      const errorCode = error.code
-      const errorMessage = error.message
-      console.error(errorCode, errorMessage)
+      console.error(error.code, error.message)
     })
 }
 

@@ -8,20 +8,17 @@ const SignUpFormProvider = () => {
   const onSubmit = (data: any) => createUserProvider({ ...data }, data.password)
 
   return (
-    <div className='flex flex-col items-center justify-center gap-10 mt-20'>
-      <div>Sign Up</div>
-      <form className='flex flex-col gap-5 w-[80%]' onSubmit={handleSubmit(onSubmit)}>
-        <Input placeholder='Name' isRequired {...register('name')}/>
-        <Input placeholder='Email' isRequired {...register('email')}/>
-        <Input placeholder='Company' isRequired {...register('company')}/>
-        <Input type='password' placeholder='Password' isRequired {...register('password')} />
-        <Text fontSize='xl' color='black' >Localización *</Text>
-        <Input placeholder='Location' bgColor='white' isRequired {...register('location')}/>
-        <Text fontSize='xl' color='black' >Número de teléfono *</Text>
-        <Input type='number' bgColor='white' placeholder='Phone number' isRequired {...register('phoneNumber')}/>
-        <Text fontSize='xl' color='black' >Web</Text>
-        <Input type='text' bgColor='white' placeholder='https://micompañía.com' {...register('website')}/>
-        <Input type="submit" />
+    <div className='flex flex-col items-center justify-center' >
+      <form className='bg-white p-10 flex flex-col gap-10 min-w-[35%] rounded-lg shadow-xl' onSubmit={handleSubmit(onSubmit)}>
+        <Text fontSize='2xl' className='font-bold text-center'> Registro proveedor</Text>
+        <Input placeholder='Nombre' variant='flushed' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('name')}/>
+        <Input placeholder='Email' variant='flushed' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('email')}/>
+        <Input placeholder='Compañía' variant='flushed' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('company')}/>
+        <Input placeholder='Contraseña' type='password' variant='flushed' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('password')} />
+        <Input placeholder='Localización' variant='flushed' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('location')}/>
+        <Input type='number' placeholder='Número de contacto' variant='flushed' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('phoneNumber')}/>
+        <Input type='text' placeholder='Web' variant='flushed' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' {...register('website')}/>
+        <Input bgColor='white' type="submit" value='Acceder' color='white' bgGradient='linear(to-r, green.300, green.300)' className='font-bold cursor-pointer'/>
       </form>
     </div>
   )
