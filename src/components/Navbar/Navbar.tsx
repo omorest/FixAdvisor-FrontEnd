@@ -8,21 +8,26 @@ const Navbar = () => {
 
   const handleLogOut = () => setUserContext(null)
 
+  const hoverStyle = 'hover:text-[white] hover:bg-[#68D391] p-2 rounded-[5px]'
+
   return (
-    <div className='flex justify-between items-center p-2'>
-      <Link to='/'><Text fontSize='3xl'>FixAdvisor</Text></Link>
-      <nav className='flex gap-5'>
-        <Link to="/" >Home</Link>
-        {user?.type !== 'Provider'
-          ? null
-          : <Link to="/new-service">New Service</Link>
-        }
-        {
-          user
-            ? <Link to="/" onClick={handleLogOut}>Cerrar sesión</Link>
-            : <Link to="/login">Login</Link>
-        }
-      </nav>
+    <div className='flex justify-center bg-[#1f2937] py-3'>
+      <div className='flex justify-between items-center w-[90%]'>
+
+        <Link to='/'><Text fontSize='3xl' className='text-white font-medium'>FixAdvisor</Text></Link>
+        <nav className='flex gap-5'>
+          <Link to="/" className={`text-white font-medium ${hoverStyle}`}>Home</Link>
+          {user?.type !== 'Provider'
+            ? null
+            : <Link to="/new-service" className={`text-white font-medium ${hoverStyle}`}>New service</Link>
+          }
+          {
+            user
+              ? <Link to="/" onClick={handleLogOut} className={`text-white font-medium ${hoverStyle}`} >Cerrar sesión</Link>
+              : <Link to="/login" className={`text-white font-medium ${hoverStyle}`}>Login</Link>
+          }
+        </nav>
+      </div>
     </div>
   )
 }

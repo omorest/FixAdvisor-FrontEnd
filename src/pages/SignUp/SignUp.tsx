@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Button, Text } from '@chakra-ui/react'
 import SingUpFormClient from '../../components/Forms/SingUpFormClient'
 import SignUpFormProvider from '../../components/Forms/SignUpFormProvider'
-import Navbar from '../../components/Navbar/Navbar'
 
 const SignUp = () => {
   const [typeUser, setTypeUser] = useState<string>('')
@@ -16,8 +15,6 @@ const SignUp = () => {
 
   return (
     <div className='h-[100vh]'>
-      <Navbar />
-
       {typeUser
         ? null
         : <div className='flex flex-col items-center justify-center gap-20'>
