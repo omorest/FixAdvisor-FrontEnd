@@ -7,8 +7,7 @@ import { fetchPostNewService } from '../../services'
 const optionsTypeServices = [
   { plumbing: 'Fontanería' },
   { carpentry: 'Carpintería' },
-  { brickwork: 'Albañilería' },
-  { carpentry: 'Carpintería' }
+  { brickwork: 'Albañilería' }
 ]
 
 const ServiceForm = () => {
