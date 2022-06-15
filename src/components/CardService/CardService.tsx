@@ -14,7 +14,6 @@ type OptionServices = {
   carpentry: string
   brickwork: string
 }
-
 const optionsTypeServices: OptionServices = {
   plumbing: 'Fontanería',
   carpentry: 'Carpintería',
