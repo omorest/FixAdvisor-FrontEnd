@@ -9,7 +9,7 @@ export const signInUser = (email: string, password: string, setUserContext: (use
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user
-      fetchUser(user)
+      fetchUser(user.uid)
         .then((user) => setUserContext(user))
         .catch((error) => console.error(error.code, error.message))
     })
