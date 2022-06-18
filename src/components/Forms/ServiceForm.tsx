@@ -1,8 +1,9 @@
 import { Input, Select, Text, Textarea } from '@chakra-ui/react'
-import { useContext, useId } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { UserContext } from '../../context/UserContext'
 import { fetchPostNewService } from '../../services'
+import { uuid } from '../../utils/utils'
 
 const optionsTypeServices = [
   { plumbing: 'Fontanería' },
@@ -13,13 +14,12 @@ const optionsTypeServices = [
 const ServiceForm = () => {
   const { register, handleSubmit } = useForm()
   const { user } = useContext(UserContext)
-  const idService = useId()
 
   const onSubmit = (data: any) => {
     const newService = {
       ...data,
       providerId: user?.id,
-      id: idService,
+      id: uuid(),
       urlsImagesService: [],
       rateStarts: [0, 0, 0, 0, 0],
       rate: 0,
@@ -32,6 +32,10 @@ const ServiceForm = () => {
     <div className='flex flex-col items-center justify-center gap-10 mt-20 mb-20' >
       <form className='bg-white p-10 flex flex-col gap-10 min-w-[35%] rounded-lg shadow-xl' onSubmit={handleSubmit(onSubmit)}>
         <Text fontSize='2xl' className='font-bold text-center'>Crear servicio</Text>
+        <div className='flex flex-col gap-3'>
+          <Text fontSize='lg' color='#0E141B'>Nombre del servicio *</Text>
+          <Input placeholder='Pon nombre a tu servicio aquí' variant='filled' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('nameService')}/>
+        </div>
         <div className='flex flex-col gap-3'>
           <Text fontSize='lg' color='#0E141B'>Tipo de servicio *</Text>
           <Select placeholder='Elegir' variant='flushed' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('typeService')} className='cursor-pointer'>
