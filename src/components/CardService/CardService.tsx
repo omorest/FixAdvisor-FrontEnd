@@ -2,18 +2,7 @@ import { FC } from 'react'
 import { Badge, Box, Image } from '@chakra-ui/react'
 import { Service } from '../../models'
 import { Link } from 'react-router-dom'
-
-const colorTypeProvider: any = {
-  plumbing: 'blue',
-  carpentry: 'orange',
-  brickwork: 'gray'
-}
-
-const optionsTypeServices: any = {
-  plumbing: 'Fontanería',
-  carpentry: 'Carpintería',
-  brickwork: 'Albañilería'
-}
+import { colorTypeProvider, optionsTypeServices } from '../../utils/typeServiceUtils'
 
 interface CardServiceProps {
   service: Service
