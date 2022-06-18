@@ -4,19 +4,13 @@ import { useParams } from 'react-router-dom'
 import { Provider, Service } from '../../models'
 import { fetchProvider, fetchService } from '../../services'
 
-type OptionServices = {
-  plumbing: string
-  carpentry: string
-  brickwork: string
-}
-
-const colorTypeProvider: OptionServices = {
+const colorTypeProvider: any = {
   plumbing: 'blue',
-  carpentry: 'yellow',
-  brickwork: 'brown'
+  carpentry: 'orange',
+  brickwork: 'gray'
 }
 
-const optionsTypeServices: OptionServices = {
+const optionsTypeServices: any = {
   plumbing: 'Fontanería',
   carpentry: 'Carpintería',
   brickwork: 'Albañilería'

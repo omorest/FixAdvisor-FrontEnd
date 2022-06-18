@@ -3,19 +3,13 @@ import { Badge, Box, Image } from '@chakra-ui/react'
 import { Service } from '../../models'
 import { Link } from 'react-router-dom'
 
-type OptionServices = {
-  plumbing: string
-  carpentry: string
-  brickwork: string
-}
-
-const colorTypeProvider: OptionServices = {
+const colorTypeProvider: any = {
   plumbing: 'blue',
   carpentry: 'orange',
   brickwork: 'gray'
 }
 
-const optionsTypeServices: OptionServices = {
+const optionsTypeServices: any = {
   plumbing: 'Fontanería',
   carpentry: 'Carpintería',
   brickwork: 'Albañilería'
