@@ -14,6 +14,6 @@ export interface Provider {
   logoImage: string
   id: string
   servicesIds?: string[]
-  web?: string
+  website?: string
   type: 'Provider'
 }

@@ -1,8 +1,9 @@
 import { Input, Select, Text, Textarea } from '@chakra-ui/react'
-import { useContext, useId } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { UserContext } from '../../context/UserContext'
 import { fetchPostNewService } from '../../services'
+import { uuid } from '../../utils/utils'
 
 const optionsTypeServices = [
   { plumbing: 'Fontanería' },
@@ -13,13 +14,12 @@ const optionsTypeServices = [
 const ServiceForm = () => {
   const { register, handleSubmit } = useForm()
   const { user } = useContext(UserContext)
-  const idService = useId()
 
   const onSubmit = (data: any) => {
     const newService = {
       ...data,
       providerId: user?.id,
-      id: idService,
+      id: uuid(),
       urlsImagesService: [],
       rateStarts: [0, 0, 0, 0, 0],
       rate: 0,

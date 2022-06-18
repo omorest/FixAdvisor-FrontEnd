@@ -8,6 +8,12 @@ export const fetchServices = async () => {
   return services
 }
 
+export const fetchService = async (id: string | undefined) => {
+  const data = await fetch(`http://localhost:4000/api/services/${id}`)
+  const services: Service = await data.json()
+  return services
+}
+
 export function fetchPostNewService (data: Service) {
   fetch(urlNewService, {
     method: 'POST',

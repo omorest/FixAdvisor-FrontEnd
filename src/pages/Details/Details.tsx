@@ -1,17 +1,21 @@
-import { Badge, Box, Text } from '@chakra-ui/react'
+import { Badge, Box, Link, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
-const colorTypeProvider: any = {
-  plumbing: 'blue',
-  carpentry: 'yellow',
-  brickwork: 'brown'
-}
+import { Provider, Service } from '../../models'
+import { fetchProvider, fetchService } from '../../services'
 
 type OptionServices = {
   plumbing: string
   carpentry: string
   brickwork: string
 }
+
+const colorTypeProvider: OptionServices = {
+  plumbing: 'blue',
+  carpentry: 'yellow',
+  brickwork: 'brown'
+}
+
 const optionsTypeServices: OptionServices = {
   plumbing: 'Fontanería',
   carpentry: 'Carpintería',
@@ -20,36 +24,79 @@ const optionsTypeServices: OptionServices = {
 
 const Details = () => {
   const { id } = useParams()
-  // const typeService: string = optionsTypeServices[service.typeService]
+  const [provider, setProvider] = useState<Provider>()
+  const [service, setService] = useState<Service>()
+
+  useEffect(() => {
+    const requestService = async () => {
+      const serviceInfo = await fetchService(id)
+      const providerInfo = await fetchProvider(serviceInfo.providerId)
+      setService(serviceInfo)
+      setProvider(providerInfo)
+    }
+    requestService()
+  }, [id])
+
   return (
-    <div className='flex justify-center'>
-      <div className='bg-white p-10 flex flex-col gap-10 min-w-[80%] rounded-lg shadow-xl'>
-        <Text className='font-bold text-3xl'>
-          Nombre servicio
-        </Text>
+    <div className='flex justify-center gap-10 flex-wrap mt-10'>
+      <div className='bg-white p-10 flex flex-col gap-10 min-w-[60%] rounded-lg shadow-xl'>
+        <div className='flex items-center gap-5'>
+          <Text className='font-bold text-3xl'>
+            {service?.nameService}
+          </Text>
+          {service?.typeService
+            ? <Box display='flex' alignItems='baseline'>
+              <Badge borderRadius='full' px='2' fontSize='l' colorScheme={colorTypeProvider[service.typeService]}>
+                {optionsTypeServices[service.typeService]}
+              </Badge>
+            </Box>
+            : null
+          }
+        </div>
         <div>
           <div>Estrellas</div>
-          <div>{5} valoraciones</div>
+          <div>{service?.totalReviews} valoraciones</div>
         </div>
-        <Box display='flex' alignItems='baseline'>
-          etiquetas
-          {/* <Badge borderRadius='full' px='2' colorScheme={colorTypeProvider[service.typeService]}>
-            {typeService}
-          </Badge> */}
-        </Box>
         <div>
           <Text className='font-bold text-2xl'>
             Fotos
           </Text>
         </div>
-        <div>
+        <div className='flex flex-col gap-5'>
           <Text className='font-bold text-2xl'>
-          Sobre el servicio
+              Sobre el servicio
           </Text>
+          <p>
+            {service?.description}
+          </p>
         </div>
         <div>
           <Text className='font-bold text-2xl'>
           Opiniones
+          </Text>
+        </div>
+      </div>
+      <div className='bg-white p-10 flex flex-col gap-10 min-w-[20%] rounded-lg shadow-xl'>
+        <div>
+          <Text className='font-bold text-2xl'>
+            {provider?.company}
+          </Text>
+        </div>
+        <div className='flex flex-col gap-3'>
+          <Text className='text-lg'>
+            {provider?.phoneNumber}
+          </Text>
+          {provider?.website &&
+          <Text className='text-lg'>
+            <Link href={provider?.website} target='_blank' color='teal.500' >{provider?.website}</Link>
+          </Text>}
+        </div>
+        <div className='flex flex-col gap-3'>
+          <Text className='font-bold text-xl'>
+            Localización
+          </Text>
+          <Text className='text-lg'>
+            {provider?.location}
           </Text>
         </div>
       </div>

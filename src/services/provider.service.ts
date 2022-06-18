@@ -1,7 +1,7 @@
 import { Provider } from '../models'
 
-const urlNewProvider = 'http://localhost:4000/api/users/providers/new-provider'
-const urlProviders = 'http://localhost:4000/api/users/providers'
+const urlNewProvider = 'http://localhost:4000/api/providers/new-provider'
+const urlProviders = 'http://localhost:4000/api/providers'
 
 export function fetchPostNewProvider (data: Provider) {
   fetch(urlNewProvider, {
