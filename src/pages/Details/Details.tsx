@@ -44,7 +44,7 @@ const Details = () => {
         </div>
         <div>
           <Text className='font-bold text-2xl'>
-          Sobre el negocio
+          Sobre el servicio
           </Text>
         </div>
         <div>

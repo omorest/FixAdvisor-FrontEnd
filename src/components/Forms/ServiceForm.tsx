@@ -33,6 +33,10 @@ const ServiceForm = () => {
       <form className='bg-white p-10 flex flex-col gap-10 min-w-[35%] rounded-lg shadow-xl' onSubmit={handleSubmit(onSubmit)}>
         <Text fontSize='2xl' className='font-bold text-center'>Crear servicio</Text>
         <div className='flex flex-col gap-3'>
+          <Text fontSize='lg' color='#0E141B'>Nombre del servicio *</Text>
+          <Input placeholder='Pon nombre a tu servicio aquí' variant='filled' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('nameService')}/>
+        </div>
+        <div className='flex flex-col gap-3'>
           <Text fontSize='lg' color='#0E141B'>Tipo de servicio *</Text>
           <Select placeholder='Elegir' variant='flushed' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('typeService')} className='cursor-pointer'>
             {optionsTypeServices.map((typeService, index) => {

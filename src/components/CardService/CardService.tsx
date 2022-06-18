@@ -3,17 +3,18 @@ import { Badge, Box, Image } from '@chakra-ui/react'
 import { Service } from '../../models'
 import { Link } from 'react-router-dom'
 
-const colorTypeProvider: any = {
-  plumbing: 'blue',
-  carpentry: 'yellow',
-  brickwork: 'brown'
-}
-
 type OptionServices = {
   plumbing: string
   carpentry: string
   brickwork: string
 }
+
+const colorTypeProvider: OptionServices = {
+  plumbing: 'blue',
+  carpentry: 'orange',
+  brickwork: 'gray'
+}
+
 const optionsTypeServices: OptionServices = {
   plumbing: 'Fontanería',
   carpentry: 'Carpintería',
@@ -30,7 +31,7 @@ const CardService: FC<CardServiceProps> = ({ service }) => {
   return (
     <Link to={`/details/${service.id}`}>
 
-      <Box maxW='xs' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+      <Box maxW='xs' borderWidth='1px' borderRadius='lg' overflow='hidden' className='hover:shadow-xl'>
         <Image boxSize='xs' objectFit='cover' src={service.urlsImagesService && (service.urlsImagesService[0] || 'https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png')} alt={'image'} />
 
         <Box p='6'>
@@ -45,24 +46,18 @@ const CardService: FC<CardServiceProps> = ({ service }) => {
             fontWeight='semibold'
             as='h3'
             lineHeight='tight'
-            isTruncated
             fontSize='xl'
           >
-            {'Compañía'}
+            {service.nameService}
           </Box>
           <Box
             mt='1'
             fontWeight=''
             as='h4'
             lineHeight='tight'
-            isTruncated
             fontSize='l'
           >
             {service.description}
-          </Box>
-
-          <Box fontSize='sm' mt='1'>
-            {'phoneNumber'}
           </Box>
 
           <Box as='span' color='gray.600' fontSize='xs'>
