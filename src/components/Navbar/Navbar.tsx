@@ -23,6 +23,11 @@ const Navbar = () => {
           }
           {
             user
+              ? <Link to="/favourites" className={`text-white font-medium ${hoverStyle}`} >Favoritos</Link>
+              : null
+          }
+          {
+            user
               ? <Link to="/" onClick={handleLogOut} className={`text-white font-medium ${hoverStyle}`} >Cerrar sesión</Link>
               : <Link to="/login" className={`text-white font-medium ${hoverStyle}`}>Login</Link>
           }

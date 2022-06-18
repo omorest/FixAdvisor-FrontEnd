@@ -9,6 +9,7 @@ import { useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/home/Home'
 import Details from './pages/Details/Details'
+import Favourites from './pages/Favorurites/Favourites'
 
 function App () {
   const [user, setUser] = useState<User>(null)
@@ -26,6 +27,7 @@ function App () {
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<SignUp />} />
               <Route path='/new-service' element={<NewServicePage />} />
+              <Route path='/favourites/' element={<Favourites />} />
               <Route path='/details/:id/' element={<Details />} />
             </Routes>
           </div>
