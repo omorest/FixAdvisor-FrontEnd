@@ -2,6 +2,7 @@ export interface Client {
   email: string
   name: string
   id: string
+  favouriteServices: string[]
   type: 'Client'
 }
 

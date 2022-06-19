@@ -26,6 +26,7 @@ export const createUserClient = (user: Client, password: string) => {
         id: userFirebase.uid,
         name: user.name,
         email: user.email,
+        favouriteServices: user.favouriteServices,
         type: 'Client'
       }
       fetchPostNewClient(dataUserClient)

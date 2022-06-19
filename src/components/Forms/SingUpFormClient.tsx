@@ -4,7 +4,7 @@ import { createUserClient } from '../../firebase/utilsFirebase'
 
 const SingUpFormClient = () => {
   const { register, handleSubmit } = useForm()
-  const onSubmit = (data: any) => createUserClient({ ...data }, data.password)
+  const onSubmit = (data: any) => createUserClient({ ...data, favouriteServices: [] }, data.password)
 
   return (
     <div className='flex flex-col items-center justify-center gap-10 mt-20 mb-20' >

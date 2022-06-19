@@ -8,7 +8,6 @@ import GalleryServicesWithFilter from '../../components/GalleryWithFilter/Galler
 const Favourites = () => {
   const [favouriteServices, setFavouriteServices] = useState<Service[]>([])
   const { user } = useContext(UserContext)
-  console.log(user)
   useEffect(() => {
     if (user) {
       fetchFavourites(user?.id).then(res => {
