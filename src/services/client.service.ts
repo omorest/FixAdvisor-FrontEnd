@@ -1,7 +1,7 @@
 import { Client } from '../models'
 
 const urlNewclient = 'http://localhost:4000/api/users/new-client'
-const urlClients = 'http://localhost:4000/api/users/clients'
+const urlClients = 'http://localhost:4000/api/clients'
 
 export const fetchPostNewClient = (data: Client) => {
   fetch(urlNewclient, {

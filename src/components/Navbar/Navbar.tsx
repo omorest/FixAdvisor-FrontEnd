@@ -22,7 +22,7 @@ const Navbar = () => {
             : <Link to="/new-service" className={`text-white font-medium ${hoverStyle}`}>New service</Link>
           }
           {
-            user
+            user && user.type === 'Client'
               ? <Link to="/favourites" className={`text-white font-medium ${hoverStyle}`} >Favoritos</Link>
               : null
           }
