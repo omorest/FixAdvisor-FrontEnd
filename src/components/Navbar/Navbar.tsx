@@ -22,6 +22,11 @@ const Navbar = () => {
             : <Link to="/new-service" className={`text-white font-medium ${hoverStyle}`}>New service</Link>
           }
           {
+            user && user.type === 'Client'
+              ? <Link to="/favourites" className={`text-white font-medium ${hoverStyle}`} >Favoritos</Link>
+              : null
+          }
+          {
             user
               ? <Link to="/" onClick={handleLogOut} className={`text-white font-medium ${hoverStyle}`} >Cerrar sesión</Link>
               : <Link to="/login" className={`text-white font-medium ${hoverStyle}`}>Login</Link>

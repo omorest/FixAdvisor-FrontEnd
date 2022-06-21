@@ -1,26 +1,30 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useContext } from 'react'
 import GalleryServices from '../GalleryServices/GalleryServices'
-import { Service } from '../../models'
-import { fetchServices } from '../../services'
+import { Client, Service } from '../../models'
 import SortFilter from '../SortFilter/SortFilter'
+import { UserContext } from '../../context/UserContext'
+import { fetchPostFavouriteService } from '../../services/favourites.service'
 
 interface GalleryServicesWithFilterProps {
-  className: string
+  services: Service[]
 }
 
-const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ className }) => {
-  const [services, setServices] = useState<Service[]>([])
+const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ services }) => {
+  const { user, setUserContext } = useContext(UserContext)
 
-  useEffect(() => {
-    fetchServices().then(res => {
-      setServices(res)
-    })
-  }, [])
+  const handleFavouriteServices = (serviceId: string) => {
+    if (user) {
+      fetchPostFavouriteService(user.id, serviceId).then(res => {
+        const userUpdated = { ...user, favouriteServices: res.favouriteServices } as Client
+        setUserContext(userUpdated)
+      })
+    }
+  }
 
   return (
     <div className='flex flex-col gap-5 mt-10' >
       <SortFilter />
-      <GalleryServices services={services}/>
+      <GalleryServices services={services} favouriteServices={user?.favouriteServices || []} typeUser={user?.type || null} onFavouriteService={handleFavouriteServices}/>
     </div>
   )
 }

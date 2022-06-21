@@ -3,13 +3,25 @@ import { Badge, Box, Image } from '@chakra-ui/react'
 import { Service } from '../../models'
 import { Link } from 'react-router-dom'
 import { colorTypeProvider, optionsTypeServices } from '../../utils/typeServiceUtils'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
 interface CardServiceProps {
   service: Service
+  favouriteServices: string[]
+  typeUser: null | 'Client' | 'Provider'
+  onFavouriteService: (service: string) => void
 }
 
-const CardService: FC<CardServiceProps> = ({ service }) => {
+const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUser, onFavouriteService }) => {
   const typeService: string = optionsTypeServices[service.typeService]
+  const isFavourite = favouriteServices?.includes(service.id)
+
+  const handleClickFavourite = (event: any) => {
+    onFavouriteService(service.id)
+    event.preventDefault()
+  }
+
+  console.log('render', favouriteServices)
 
   return (
     <Link to={`/details/${service.id}`}>
@@ -43,9 +55,21 @@ const CardService: FC<CardServiceProps> = ({ service }) => {
             {service.description}
           </Box>
 
-          <Box as='span' color='gray.600' fontSize='xs'>
-          Rate: {service.rate}
-          </Box>
+          <div className='flex justify-between items-center mt-5'>
+            <Box as='span' color='gray.600' fontSize='s'>
+              Rate: {service.rate}
+            </Box>
+            { typeUser === 'Client'
+              ? <div className='text-3xl'>
+                {
+                  isFavourite
+                    ? <AiFillHeart onClick={handleClickFavourite} className='text-[#ff595e]'/>
+                    : <AiOutlineHeart onClick={handleClickFavourite}/>
+                }
+              </div>
+              : null
+            }
+          </div>
         </Box>
       </Box>
     </Link>
