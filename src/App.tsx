@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/Navbar'
 import Home from './pages/home/Home'
 import Details from './pages/Details/Details'
 import Favourites from './pages/Favorurites/Favourites'
+import Profile from './pages/Profile/Profile'
 
 function App () {
   const [user, setUser] = useState<User>(null)
@@ -29,6 +30,7 @@ function App () {
               <Route path='/new-service' element={<NewServicePage />} />
               <Route path='/favourites/' element={<Favourites />} />
               <Route path='/details/:id/' element={<Details />} />
+              <Route path='/profile' element={<Profile />} />
             </Routes>
           </div>
         </div>

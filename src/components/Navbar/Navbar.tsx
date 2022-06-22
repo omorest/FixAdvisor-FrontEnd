@@ -16,7 +16,7 @@ const Navbar = () => {
 
         <Link to='/'><Text fontSize='3xl' className='text-white font-medium'>FixAdvisor</Text></Link>
         <nav className='flex gap-5'>
-          <Link to="/" className={`text-white font-medium ${hoverStyle}`}>Home</Link>
+          {/* <Link to="/" className={`text-white font-medium ${hoverStyle}`}>Home</Link> */}
           {user?.type !== 'Provider'
             ? null
             : <Link to="/new-service" className={`text-white font-medium ${hoverStyle}`}>New service</Link>
@@ -24,6 +24,11 @@ const Navbar = () => {
           {
             user && user.type === 'Client'
               ? <Link to="/favourites" className={`text-white font-medium ${hoverStyle}`} >Favoritos</Link>
+              : null
+          }
+          {
+            user
+              ? <Link to="/profile" className={`text-white font-medium ${hoverStyle}`} >Perfil</Link>
               : null
           }
           {
