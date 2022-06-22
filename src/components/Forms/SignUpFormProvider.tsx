@@ -1,11 +1,16 @@
 import { Input, Text } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { createUserProvider } from '../../firebase/utilsFirebase'
 
 const SignUpFormProvider = () => {
   const { register, handleSubmit } = useForm()
+  const navigate = useNavigate()
 
-  const onSubmit = (data: any) => createUserProvider({ ...data }, data.password)
+  const onSubmit = (data: any) => {
+    createUserProvider({ ...data }, data.password)
+    navigate('/login')
+  }
 
   return (
     <div className='flex flex-col items-center justify-center' >

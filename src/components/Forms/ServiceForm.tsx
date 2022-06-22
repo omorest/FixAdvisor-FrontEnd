@@ -1,6 +1,7 @@
 import { Input, Select, Text, Textarea } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import { fetchPostNewService } from '../../services'
 import { uuid } from '../../utils/utils'
@@ -14,6 +15,7 @@ const optionsTypeServices = [
 const ServiceForm = () => {
   const { register, handleSubmit } = useForm()
   const { user } = useContext(UserContext)
+  const navigate = useNavigate()
 
   const onSubmit = (data: any) => {
     const newService = {
@@ -26,6 +28,7 @@ const ServiceForm = () => {
       totalReviews: 0
     }
     fetchPostNewService(newService)
+    navigate(`/details/${newService.id}`)
   }
 
   return (

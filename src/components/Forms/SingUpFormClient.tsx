@@ -1,10 +1,16 @@
 import { Input, Text } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { createUserClient } from '../../firebase/utilsFirebase'
 
 const SingUpFormClient = () => {
   const { register, handleSubmit } = useForm()
-  const onSubmit = (data: any) => createUserClient({ ...data, favouriteServices: [] }, data.password)
+  const navigate = useNavigate()
+
+  const onSubmit = (data: any) => {
+    createUserClient({ ...data, favouriteServices: [] }, data.password)
+    navigate('/login')
+  }
 
   return (
     <div className='flex flex-col items-center justify-center gap-10 mt-20 mb-20' >
