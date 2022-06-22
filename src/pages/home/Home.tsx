@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import GalleryServicesWithFilter from '../../components/GalleryWithFilter/GalleryServicesWithFilter'
 import Search from '../../components/Search/Search'
@@ -33,7 +34,8 @@ const Home = () => {
         setServices(res)
       })
     } else {
-      fetchSearchService(inputValue).then(res => setServices(res))
+      fetchSearchService(inputValue)
+        .then(res => setServices(res))
     }
   }, [inputValue])
 
@@ -42,7 +44,10 @@ const Home = () => {
       <div className='flex justify-center'>
         <Search onSearch={handleSearch}/>
       </div>
-      <GalleryServicesWithFilter services={services} onSortServices={handleSortServices}/>
+      {services.length > 0
+        ? <GalleryServicesWithFilter services={services} onSortServices={handleSortServices}/>
+        : <Text className='text-2xl mt-10'>No se han encontrado servicios</Text>
+      }
     </div>
   )
 }
