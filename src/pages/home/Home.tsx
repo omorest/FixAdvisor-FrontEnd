@@ -23,6 +23,7 @@ const Home = () => {
     }
     setServices(servicesSort)
   }
+
   useEffect(() => {
     fetchServices().then(res => {
       setServices(res)
