@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import GalleryServicesWithFilter from '../../components/GalleryWithFilter/GalleryServicesWithFilter'
 import Search from '../../components/Search/Search'
 import { Service } from '../../models'
-import { fetchServices } from '../../services'
+import { fetchSearchService, fetchServices } from '../../services'
 import { sortByString } from '../../utils/utils'
 
 const Home = () => {
   const [services, setServices] = useState<Service[]>([])
+  const [inputValue, setInputValue] = useState('')
+  const handleSearch = (inputValue: string) => setInputValue(inputValue)
 
   const handleSortServices = (typeSort: string) => {
     const servicesSort = [...services]
@@ -25,10 +27,20 @@ const Home = () => {
     })
   }, [])
 
+  useEffect(() => {
+    if (inputValue === '') {
+      fetchServices().then(res => {
+        setServices(res)
+      })
+    } else {
+      fetchSearchService(inputValue).then(res => setServices(res))
+    }
+  }, [inputValue])
+
   return (
     <div className="flex flex-col gap-[10px] mt-10">
       <div className='flex justify-center'>
-        <Search />
+        <Search onSearch={handleSearch}/>
       </div>
       <GalleryServicesWithFilter services={services} onSortServices={handleSortServices}/>
     </div>

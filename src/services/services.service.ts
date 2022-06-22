@@ -14,7 +14,7 @@ export const fetchService = async (id: string | undefined) => {
   return services
 }
 
-export function fetchPostNewService (data: Service) {
+export const fetchPostNewService = (data: Service) => {
   fetch(urlNewService, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -23,4 +23,10 @@ export function fetchPostNewService (data: Service) {
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(err => console.log(err))
+}
+
+export const fetchSearchService = async (input: string) => {
+  const data = await fetch(`http://localhost:4000/api/services/search/${input}`)
+  const services: Service[] = await data.json()
+  return services
 }
