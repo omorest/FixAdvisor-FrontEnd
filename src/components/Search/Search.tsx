@@ -9,18 +9,18 @@ interface SearchProps {
 const Search: FC<SearchProps> = ({ onSearch }) => {
   const [inputSearch, setInputSearch] = useState<string>('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     onSearch(inputSearch)
     e.preventDefault()
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     onSearch(e.target.value)
     setInputSearch(e.target.value)
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='w-[50%]'>
+    <div className='w-[50%]'>
+      <form onSubmit={handleSubmit}>
         <InputGroup size='md'>
           <InputLeftElement
             pointerEvents='none'
@@ -29,8 +29,8 @@ const Search: FC<SearchProps> = ({ onSearch }) => {
           </InputLeftElement>
           <Input placeholder='Buscar un servicio' variant='flushed' color='#1f2937' _placeholder={{ color: 'inherit' }} focusBorderColor='#1f2937' borderColor='#171923' onChange={handleChange} />
         </InputGroup>
-      </div>
-    </form>
+      </form>
+    </div>
 
   )
 }
