@@ -3,15 +3,10 @@ import GalleryServicesWithFilter from '../../components/GalleryWithFilter/Galler
 import Search from '../../components/Search/Search'
 import { Service } from '../../models'
 import { fetchServices } from '../../services'
+import { sortByString } from '../../utils/utils'
 
 const Home = () => {
   const [services, setServices] = useState<Service[]>([])
-
-  const sortByString = (a: string, b: string) => {
-    if (a < b) return -1
-    if (a > b) return 1
-    return 0
-  }
 
   const handleSortServices = (typeSort: string) => {
     const servicesSort = [...services]
