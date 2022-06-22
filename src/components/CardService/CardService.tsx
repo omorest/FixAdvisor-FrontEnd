@@ -21,8 +21,6 @@ const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUse
     event.preventDefault()
   }
 
-  console.log('render', favouriteServices)
-
   return (
     <Link to={`/details/${service.id}`}>
 

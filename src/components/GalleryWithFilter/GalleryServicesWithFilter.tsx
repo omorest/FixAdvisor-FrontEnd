@@ -7,9 +7,10 @@ import { fetchPostFavouriteService } from '../../services/favourites.service'
 
 interface GalleryServicesWithFilterProps {
   services: Service[]
+  onSortServices: (typeSort: string) => void
 }
 
-const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ services }) => {
+const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ services, onSortServices }) => {
   const { user, setUserContext } = useContext(UserContext)
 
   const handleFavouriteServices = (serviceId: string) => {
@@ -23,7 +24,7 @@ const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ service
 
   return (
     <div className='flex flex-col gap-5 mt-10' >
-      <SortFilter />
+      <SortFilter onSortServices={onSortServices}/>
       <GalleryServices services={services} favouriteServices={user?.favouriteServices || []} typeUser={user?.type || null} onFavouriteService={handleFavouriteServices}/>
     </div>
   )
