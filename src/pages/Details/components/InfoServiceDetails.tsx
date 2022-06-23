@@ -1,6 +1,6 @@
 import { Badge, Box, Text } from '@chakra-ui/react'
-import React, { FC } from 'react'
-import Reviews from '../../../components/Rewiews/reviews'
+import { FC } from 'react'
+import Reviews from '../../../components/Rewiews/Reviews'
 import Stars from '../../../components/Stars/Stars'
 import { Service } from '../../../models'
 import { SingleReview } from '../../../models/Review.model'
