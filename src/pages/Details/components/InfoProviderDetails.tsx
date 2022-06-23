@@ -8,7 +8,7 @@ interface InfoProviderDetailsProps {
 
 const InfoProviderDetails: FC<InfoProviderDetailsProps> = ({ provider }) => {
   return (
-    <div className='bg-white p-10 flex flex-col gap-10 min-w-[20%] rounded-lg shadow-xl'>
+    <div className='bg-white p-10 flex flex-col gap-10 min-w-[20%] h-[100%] rounded-lg shadow-xl'>
       <div>
         <Text className='font-bold text-2xl'>
           {provider?.company}

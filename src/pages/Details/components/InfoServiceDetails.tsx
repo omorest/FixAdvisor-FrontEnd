@@ -1,12 +1,30 @@
 import { Badge, Box, Text } from '@chakra-ui/react'
 import React, { FC } from 'react'
+import Reviews from '../../../components/Rewiews/reviews'
 import Stars from '../../../components/Stars/Stars'
 import { Service } from '../../../models'
+import { SingleReview } from '../../../models/Review.model'
 import { colorTypeProvider, optionsTypeServices } from '../../../utils/typeServiceUtils'
 
 interface InfoServiceDetailsProps {
   service: Service
 }
+const reviews: SingleReview[] = [
+  {
+    date: '1-02-2022',
+    nameClient: 'Carlos',
+    opinion: 'Es lo mejor',
+    companyProvider: 'Carpinterías Oscar',
+    responseProvider: 'Muchas gracias'
+  },
+  {
+    date: '15-04-2021',
+    nameClient: 'Cristofer',
+    opinion: 'Es lo peor',
+    companyProvider: 'Carpinterías Oscar',
+    responseProvider: 'No lo creo!'
+  }
+]
 
 const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
   return (
@@ -40,10 +58,11 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
           {service?.description}
         </p>
       </div>
-      <div>
+      <div className='flex flex-col gap-5'>
         <Text className='font-bold text-2xl'>
           Opiniones
         </Text>
+        <Reviews reviews={reviews}/>
       </div>
     </div>
   )

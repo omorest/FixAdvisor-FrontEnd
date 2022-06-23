@@ -16,15 +16,13 @@ const Profile = () => {
               user?.type === 'Provider' ? <Text>{user.company}</Text> : <Text> {user?.name}</Text>
             }
           </Text>
-          {
-            <Image
-              borderRadius='full'
-              boxSize='200px'
-              src={'https://img.freepik.com/foto-gratis/retrato-joven-sonriente-gafas_171337-4842.jpg?w=2000' || defaultImage}
-              objectFit='cover'
-              alt='perfil foto'
-            />
-          }
+          <Image
+            borderRadius='full'
+            boxSize='200px'
+            src={'https://img.freepik.com/foto-gratis/retrato-joven-sonriente-gafas_171337-4842.jpg?w=2000' || { defaultImage }}
+            objectFit='cover'
+            alt='perfil foto'
+          />
         </div>
       </div>
       {
