@@ -2,6 +2,8 @@ import { AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Ima
 import { FC } from 'react'
 import { SingleReview } from '../../models/Review.model'
 
+const defaultImage = 'https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png'
+
 interface ReviewProps {
   review: SingleReview
 }

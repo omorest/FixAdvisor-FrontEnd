@@ -4,6 +4,7 @@ import { UserContext } from '../../context/UserContext'
 import InfoProvider from './components/InfoProvider'
 
 const defaultImage = 'https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png'
+
 const Profile = () => {
   const { user } = useContext(UserContext)
 

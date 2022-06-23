@@ -5,6 +5,7 @@ import Stars from '../../../components/Stars/Stars'
 import { Service } from '../../../models'
 import { SingleReview } from '../../../models/Review.model'
 import { colorTypeProvider, optionsTypeServices } from '../../../utils/typeServiceUtils'
+import CarouselImages from '../../../components/CarouselImages/CarouselImages'
 
 interface InfoServiceDetailsProps {
   service: Service
@@ -42,13 +43,14 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
           : null
         }
       </div>
-      <div className=''>
+      <div className='font-semibold text-lg'>
         <Stars rate={service?.rate ?? 0} totalReviews={service?.totalReviews ?? 0}/>
       </div>
-      <div>
+      <div className='flex flex-col gap-5' >
         <Text className='font-bold text-2xl'>
             Fotos
         </Text>
+        <CarouselImages images={service?.urlsImagesService || []}/>
       </div>
       <div className='flex flex-col gap-5'>
         <Text className='font-bold text-2xl'>

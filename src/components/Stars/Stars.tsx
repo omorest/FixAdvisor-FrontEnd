@@ -7,21 +7,25 @@ const TOTAL_STARS = 5
 interface StarsProps {
   rate: number
   totalReviews: number
+  starDimension?: string
+  inLine?: boolean
 }
 
-const Stars: FC<StarsProps> = ({ rate, totalReviews }) => {
+const Stars: FC<StarsProps> = ({ rate, totalReviews, starDimension = '30px', inLine = true }) => {
+  const style = `flex ${inLine ? 'items-center gap-5' : 'flex-col gap-3'} `
+
   return (
-    <div className='flex items-center gap-5'>
+    <div className= {style}>
       <StarRatings
         rating={rate}
         starRatedColor="#68D391"
         // changeRating={this.changeRating}
         numberOfStars={TOTAL_STARS}
         name='rating'
-        starSpacing='3px'
-        starDimension='30px'
+        starSpacing='1px'
+        starDimension={starDimension}
       />
-      <Text className='font-semibold'>{totalReviews} reseñas</Text>
+      <Text>{totalReviews} reseñas</Text>
 
     </div>
   )
