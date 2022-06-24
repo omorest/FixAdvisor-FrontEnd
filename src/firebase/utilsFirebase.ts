@@ -1,8 +1,7 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth'
 import { User } from '../context/UserContext'
 import { Client, Provider } from '../models'
-import { fetchPostNewClient, fetchPostNewProvider } from '../services'
-import { fetchUser } from '../services/user.service'
+import { fetchPostNewClient, fetchPostNewProvider, fetchUser } from '../services'
 import { auth } from './firebaseConfig'
 
 export const signInUser = (email: string, password: string, setUserContext: (user: User) => void) => {

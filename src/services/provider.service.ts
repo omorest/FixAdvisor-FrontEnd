@@ -1,10 +1,8 @@
 import { Provider } from '../models'
-
-const urlNewProvider = 'http://localhost:4000/api/providers/new-provider'
-const urlProviders = 'http://localhost:4000/api/providers'
+import { URL_NEW_PROVIDER, URL_PROVIDERS } from './urls'
 
 export function fetchPostNewProvider (data: Provider) {
-  fetch(urlNewProvider, {
+  fetch(URL_NEW_PROVIDER, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-type': 'application/json; charset=UTF-8' }
@@ -15,7 +13,7 @@ export function fetchPostNewProvider (data: Provider) {
 }
 
 export const fetchProvider = async (providerId: string) => {
-  const response = await fetch(`${urlProviders}/${providerId}`)
+  const response = await fetch(`${URL_PROVIDERS}/${providerId}`)
   const data: Provider = await response.json()
   return data
 }
