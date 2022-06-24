@@ -1,3 +1,6 @@
 export * from './client.service'
+export * from './favourites.service'
 export * from './provider.service'
 export * from './services.service'
+export * from './urls'
+export * from './user.service'

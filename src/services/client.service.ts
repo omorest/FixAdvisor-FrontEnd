@@ -1,10 +1,8 @@
 import { Client } from '../models'
-
-const urlNewclient = 'http://localhost:4000/api/users/new-client'
-const urlClients = 'http://localhost:4000/api/clients'
+import { URL_CLIENTS, URL_NEW_CLIENT } from './urls'
 
 export const fetchPostNewClient = (data: Client) => {
-  fetch(urlNewclient, {
+  fetch(URL_NEW_CLIENT, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-type': 'application/json; charset=UTF-8' }
@@ -15,7 +13,7 @@ export const fetchPostNewClient = (data: Client) => {
 }
 
 export const fetchClient = async (clientId: string) => {
-  const response = await fetch(`${urlClients}/${clientId}`)
+  const response = await fetch(`${URL_CLIENTS}/${clientId}`)
   const data: Client = await response.json()
   return data
 }

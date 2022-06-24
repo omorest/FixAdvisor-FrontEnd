@@ -1,21 +1,20 @@
 import { Service } from '../models'
-
-const urlNewService = 'http://localhost:4000/api/services/new-service'
+import { URL_NEW_SERVICE, URL_SEARCH_SERVICE, URL_SERVICES } from './urls'
 
 export const fetchServices = async () => {
-  const data = await fetch('http://localhost:4000/api/services')
-  const services: Service[] = await data.json()
+  const data = await fetch(URL_SERVICES)
+  const services: Service[] = await data.json() as Service[]
   return services
 }
 
 export const fetchService = async (id: string | undefined) => {
-  const data = await fetch(`http://localhost:4000/api/services/${id}`)
+  const data = await fetch(`${URL_SERVICES}/${id}`)
   const services: Service = await data.json()
   return services
 }
 
 export const fetchPostNewService = (data: Service) => {
-  fetch(urlNewService, {
+  fetch(URL_NEW_SERVICE, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-type': 'application/json; charset=UTF-8' }
@@ -26,7 +25,7 @@ export const fetchPostNewService = (data: Service) => {
 }
 
 export const fetchSearchService = async (input: string) => {
-  const data = await fetch(`http://localhost:4000/api/services/search/${input}`)
+  const data = await fetch(`${URL_SEARCH_SERVICE}/${input}`)
   const services: Service[] = await data.json()
   return services
 }

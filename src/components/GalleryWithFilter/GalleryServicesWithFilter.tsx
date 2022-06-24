@@ -3,7 +3,7 @@ import GalleryServices from '../GalleryServices/GalleryServices'
 import { Client, Service } from '../../models'
 import SortFilter from '../SortFilter/SortFilter'
 import { UserContext } from '../../context/UserContext'
-import { fetchPostFavouriteService } from '../../services/favourites.service'
+import { fetchPostFavouriteService } from '../../services'
 
 interface GalleryServicesWithFilterProps {
   services: Service[]

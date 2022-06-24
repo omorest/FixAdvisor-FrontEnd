@@ -2,9 +2,9 @@ import { Text } from '@chakra-ui/react'
 import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { Service } from '../../models'
-import { fetchFavourites } from '../../services/favourites.service'
 import GalleryServicesWithFilter from '../../components/GalleryWithFilter/GalleryServicesWithFilter'
 import { sortByString } from '../../utils/utils'
+import { fetchFavourites } from '../../services'
 
 const Favourites = () => {
   const [favouriteServices, setFavouriteServices] = useState<Service[]>([])
