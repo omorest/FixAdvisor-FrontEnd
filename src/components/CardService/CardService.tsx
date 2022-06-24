@@ -25,12 +25,14 @@ const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUse
     event.preventDefault()
   }
 
+  const imagesServices = service?.urlsImagesService && service?.urlsImagesService?.length > 0 ? service?.urlsImagesService : [DEFAULT_IMAGE]
+
   return (
     <Link to={`/details/${service.id}`}>
 
       <Box maxW='xs' borderWidth='1px' borderRadius='lg' overflow='hidden' className='hover:shadow-xl' backgroundColor='white' height={'100%'}>
         <Box p=''>
-          <CarouselImages images={service?.urlsImagesService || [DEFAULT_IMAGE]} serviceId={service.id} autoPlay={false} infiniteLoop={false}/>
+          <CarouselImages images={imagesServices} serviceId={service.id} autoPlay={false} infiniteLoop={false}/>
         </Box>
         <Box p='6' height={'30%'}>
           <Box display='flex' alignItems='baseline'>

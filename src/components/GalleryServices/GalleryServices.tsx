@@ -3,15 +3,15 @@ import CardService from '../CardService/CardService'
 
 interface GalleryServicesProps {
   services: Service[]
-  favouriteServices: string[]
+  favouriteServices?: string[]
   typeUser: null | 'Client' | 'Provider'
-  onFavouriteService: (service: string) => void
+  onFavouriteService?: (service: string) => void
 }
 
 const GalleryServices = ({ services, favouriteServices, typeUser, onFavouriteService }: GalleryServicesProps) => {
   return (
     <div className='flex gap-10'>
-      {services.map((service) => <CardService service={service} favouriteServices={favouriteServices || []} typeUser={typeUser} onFavouriteService={onFavouriteService} key={service.id}/>)}
+      {services.map((service) => <CardService service={service} favouriteServices={favouriteServices || []} typeUser={typeUser} onFavouriteService={onFavouriteService!} key={service.id}/>)}
     </div>
   )
 }

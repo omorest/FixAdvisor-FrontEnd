@@ -44,6 +44,7 @@ export const createUserProvider = (user: Provider, password: string) => {
       const dataUserClient: Provider = {
         ...user,
         id: userFirebase.uid,
+        servicesIds: [],
         type: 'Provider'
       }
       fetchPostNewProvider(dataUserClient)

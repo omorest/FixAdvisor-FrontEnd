@@ -1,5 +1,5 @@
 import { Service } from '../models'
-import { URL_NEW_SERVICE, URL_SEARCH_SERVICE, URL_SERVICES } from './urls'
+import { URL_NEW_SERVICE, URL_SEARCH_SERVICE, URL_SERVICES, URL_SERVICES_PROVIDER } from './urls'
 
 export const fetchServices = async () => {
   const data = await fetch(URL_SERVICES)
@@ -10,6 +10,12 @@ export const fetchServices = async () => {
 export const fetchService = async (id: string | undefined) => {
   const data = await fetch(`${URL_SERVICES}/${id}`)
   const services: Service = await data.json()
+  return services
+}
+
+export const fetchServicesProvider = async (providerId: string | undefined) => {
+  const data = await fetch(`${URL_SERVICES_PROVIDER}/${providerId}`)
+  const services: Service[] = await data.json()
   return services
 }
 

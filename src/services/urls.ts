@@ -5,6 +5,7 @@ export const URL_FAVOURITES = `${URL_BASE}/favourites`
 export const URL_NEW_PROVIDER = `${URL_BASE}/providers/new-provider`
 export const URL_PROVIDERS = `${URL_BASE}/providers`
 export const URL_SERVICES = `${URL_BASE}/services`
+export const URL_SERVICES_PROVIDER = `${URL_BASE}/services/provider`
 export const URL_NEW_SERVICE = `${URL_BASE}/services/new-service`
 export const URL_SEARCH_SERVICE = `${URL_BASE}/services/search`
 export const URL_USERS = `${URL_BASE}/users`
