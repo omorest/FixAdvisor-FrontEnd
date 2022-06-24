@@ -1,10 +1,13 @@
 import { FC } from 'react'
-import { Badge, Box, Image } from '@chakra-ui/react'
+import { Badge, Box } from '@chakra-ui/react'
 import { Service } from '../../models'
 import { Link } from 'react-router-dom'
 import { colorTypeProvider, optionsTypeServices } from '../../utils/typeServiceUtils'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import Stars from '../Stars/Stars'
+import CarouselImages from '../CarouselImages/CarouselImages'
+
+const DEFAULT_IMAGE = 'https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png'
 
 interface CardServiceProps {
   service: Service
@@ -25,9 +28,11 @@ const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUse
   return (
     <Link to={`/details/${service.id}`}>
 
-      <Box maxW='xs' borderWidth='1px' borderRadius='lg' overflow='hidden' className='hover:shadow-xl' backgroundColor='white'>
-        <Image boxSize='xs' objectFit='cover' src={service.urlsImagesService && (service.urlsImagesService[0] || 'https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png')} alt={'image'} />
-        <Box p='6'>
+      <Box maxW='xs' borderWidth='1px' borderRadius='lg' overflow='hidden' className='hover:shadow-xl' backgroundColor='white' height={'100%'}>
+        <Box p=''>
+          <CarouselImages images={service?.urlsImagesService || [DEFAULT_IMAGE]} serviceId={service.id} autoPlay={false} infiniteLoop={false}/>
+        </Box>
+        <Box p='6' height={'30%'}>
           <Box display='flex' alignItems='baseline'>
             <Badge borderRadius='full' px='2' colorScheme={colorTypeProvider[service.typeService]}>
               {typeService}
