@@ -33,10 +33,10 @@ const Review: FC<ReviewProps> = ({ review }) => {
         <AccordionPanel pb={4} marginLeft={'0px'}>
           <Text fontStyle={'italic'}> {review.opinion}</Text>
 
-          {/* <AccordionPanel mt={4} marginLeft={'0px'} className='flex flex-col gap-2'>
+          {/* <div className='mt-4 ml-4'>
             <Text fontWeight={'semibold'} >{review.companyProvider}</Text>
             <Text fontStyle={'italic'}> {review.responseProvider}</Text>
-          </AccordionPanel> */}
+          </div> */}
         </AccordionPanel>
       </AccordionItem>
     </>

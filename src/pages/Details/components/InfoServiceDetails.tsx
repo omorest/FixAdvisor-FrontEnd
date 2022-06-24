@@ -29,7 +29,7 @@ const reviews: SingleReview[] = [
 
 const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
   return (
-    <div className='bg-white p-10 flex flex-col gap-10 min-w-[60%] rounded-lg shadow-xl'>
+    <div className='bg-white p-10 flex flex-col gap-10 min-w-[60%] rounded-lg shadow-xl mb-10'>
       <div className='flex items-center gap-5'>
         <Text className='font-bold text-3xl'>
           {service?.nameService}
