@@ -1,5 +1,6 @@
 import { AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Image, Text } from '@chakra-ui/react'
 import { FC } from 'react'
+import StarRatings from 'react-star-ratings'
 import { SingleReview } from '../../models/Review.model'
 
 const defaultImage = 'https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png'
@@ -22,7 +23,7 @@ const Review: FC<ReviewProps> = ({ review }) => {
               alt='perfil foto'
             />
             <div>
-              <Text fontSize={'large'}>{review.nameClient}</Text>
+              <Text fontSize={'large'}>{review.clientName}</Text>
               <Text fontWeight='normal' fontSize={'15px'}>
                 {review.date}
               </Text>
@@ -31,12 +32,23 @@ const Review: FC<ReviewProps> = ({ review }) => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel pb={4} marginLeft={'0px'}>
-          <Text fontStyle={'italic'}> {review.opinion}</Text>
+          <div className='flex flex-col gap-2'>
 
-          {/* <div className='mt-4 ml-4'>
-            <Text fontWeight={'semibold'} >{review.companyProvider}</Text>
+            <StarRatings
+              rating={review.rate}
+              starRatedColor="#68D391"
+              numberOfStars={5}
+              name='rating'
+              starSpacing='1px'
+              starDimension={'15px'}
+            />
+            <Text fontStyle={'italic'}> {review.opinion}</Text>
+          </div>
+
+          <div className='mt-4 ml-4'>
+            <Text fontWeight={'semibold'} >{review.providerName}</Text>
             <Text fontStyle={'italic'}> {review.responseProvider}</Text>
-          </div> */}
+          </div>
         </AccordionPanel>
       </AccordionItem>
     </>

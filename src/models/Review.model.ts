@@ -1,7 +1,9 @@
 export interface SingleReview {
-  date: string
-  nameClient: string
+  id: string
+  date?: string
+  clientName: string
   opinion: string
-  companyProvider?: string
+  providerName?: string
   responseProvider?: string
+  rate: number
 }

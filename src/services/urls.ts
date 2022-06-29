@@ -9,3 +9,4 @@ export const URL_SERVICES_PROVIDER = `${URL_BASE}/services/provider`
 export const URL_NEW_SERVICE = `${URL_BASE}/services/new-service`
 export const URL_SEARCH_SERVICE = `${URL_BASE}/services/search`
 export const URL_USERS = `${URL_BASE}/users`
+export const URL_REVIEWS_SERVICE = `${URL_BASE}/reviews`
