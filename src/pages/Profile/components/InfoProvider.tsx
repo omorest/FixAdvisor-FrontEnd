@@ -15,6 +15,7 @@ const InfoProvider: FC<InfoProviderProps> = ({ user }) => {
   useEffect(() => {
     const request = async () => {
       const services = await fetchServicesProvider(user?.id)
+      console.log('hola')
       setServicesProvider(services)
     }
     request()
@@ -27,7 +28,10 @@ const InfoProvider: FC<InfoProviderProps> = ({ user }) => {
           <Text className='font-bold text-xl'>
             Servicios
           </Text>
-          <GalleryServices services={servicesProvider} typeUser={user && user?.type} />
+          {servicesProvider?.length > 0
+            ? <GalleryServices services={servicesProvider} typeUser={user && user?.type} />
+            : <Text> No tienes servicios creados</Text>
+          }
 
         </div>
       </div>

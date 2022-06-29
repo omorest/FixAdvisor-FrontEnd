@@ -3,6 +3,7 @@ import { URL_NEW_SERVICE, URL_SEARCH_SERVICE, URL_SERVICES, URL_SERVICES_PROVIDE
 
 export const fetchServices = async () => {
   const data = await fetch(URL_SERVICES)
+  console.log('hola')
   const services: Service[] = await data.json() as Service[]
   return services
 }
