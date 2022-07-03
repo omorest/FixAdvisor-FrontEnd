@@ -10,7 +10,7 @@ interface GalleryServicesProps {
 
 const GalleryServices = ({ services, favouriteServices, typeUser, onFavouriteService }: GalleryServicesProps) => {
   return (
-    <div className='flex gap-10'>
+    <div className='flex gap-10 flex-wrap'>
       {services.map((service) => <CardService service={service} favouriteServices={favouriteServices || []} typeUser={typeUser} onFavouriteService={onFavouriteService!} key={service.id}/>)}
     </div>
   )

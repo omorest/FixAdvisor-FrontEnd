@@ -32,7 +32,7 @@ const Favourites = () => {
   return (
     <div >
       <Text className='font-bold text-3xl mt-10'>Servicios favoritos</Text>
-      <div className='flex mt-10'>
+      <div className='flex mt-10 w-[100%]'>
         {favouriteServices.length
           ? <GalleryServicesWithFilter services={favouriteServices || []} onSortServices={handleSortServices}/>
           : <Text className='font-bold text-xl'>No hay ningún servicio como favorito</Text>

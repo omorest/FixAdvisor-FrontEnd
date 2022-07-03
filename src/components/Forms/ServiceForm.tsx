@@ -51,6 +51,16 @@ const ServiceForm = () => {
           <Text fontSize='lg' color='#0E141B'>Descripción *</Text>
           <Textarea placeholder='Describe tu servicio aquí' variant='filled' color='#0E141B' _placeholder={{ color: 'inherit' }} focusBorderColor='#0E141B' isRequired {...register('description')}/>
         </div>
+        <div className='flex flex-col gap-2'>
+          <Text>Fotos para mostrar en el servicio</Text>
+          <input type="file"
+            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2
+              file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold
+              file:bg-[#e2e8f0] file:text-[#0E141B]
+              hover:file:bg-[#CDF2CA] hover:file:cursor-pointer hover:cursor-pointer"
+            multiple
+          />
+        </div>
         <Input bgColor='white' type="submit" color='white' bgGradient='linear(to-r, green.300, green.300)' className='font-bold cursor-pointer'/>
       </form>
 

@@ -22,6 +22,11 @@ const Home = () => {
     setServices(servicesSort)
   }
 
+  const handleFilterServices = (typeServices: string[]) => {
+    const filteredServices = services.filter((service: Service) => typeServices.includes(service.typeService))
+    setServices(filteredServices)
+  }
+
   useEffect(() => {
     fetchServices().then(res => {
       setServices(res)
@@ -45,7 +50,7 @@ const Home = () => {
         <Search onSearch={handleSearch}/>
       </div>
       {services.length > 0
-        ? <GalleryServicesWithFilter services={services} onSortServices={handleSortServices}/>
+        ? <GalleryServicesWithFilter services={services} onSortServices={handleSortServices} onFilterServices={handleFilterServices}/>
         : <Text className='text-2xl mt-10'>No se han encontrado servicios</Text>
       }
     </div>

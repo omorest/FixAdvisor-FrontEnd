@@ -6,7 +6,7 @@ interface SortFilterProps {
 }
 const SortFilter: FC<SortFilterProps> = ({ onSortServices }) => {
   return (
-    <div className='flex items-center gap-3'>
+    <div className='flex items-center gap-3 w-[100%]'>
       <Text>Ordenar por:</Text>
       <div className='w-[20%]'>
         <Select placeholder='Elegir'

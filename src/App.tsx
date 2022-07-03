@@ -22,7 +22,7 @@ function App () {
       <Container maxW='100%' padding={0} backgroundColor='#f9fafb' >
         <Navbar />
         <div className='flex justify-center'>
-          <div className='w-[75%]'>
+          <div className='w-[80%]'>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/login' element={<Login />} />
