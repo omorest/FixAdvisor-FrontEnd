@@ -1,4 +1,4 @@
-import { Badge, Box, Input, Text } from '@chakra-ui/react'
+import { Badge, Box, Text } from '@chakra-ui/react'
 import { FC, useContext, useEffect, useState } from 'react'
 import Reviews from '../../../components/Rewiews/Reviews'
 import Stars from '../../../components/Stars/Stars'
@@ -60,13 +60,11 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
           {service?.description}
         </p>
       </div>
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col gap-7'>
         <Text className='font-bold text-2xl'>
           Opiniones
         </Text>
-        {
-          <ReviewWrite userType={user?.type || ''}/>
-        }
+        <ReviewWrite userType={user?.type || ''}/>
         <Reviews reviews={reviews}/>
       </div>
     </div>

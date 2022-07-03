@@ -10,7 +10,7 @@ interface ReviewsProps {
 const Reviews: FC<ReviewsProps> = ({ reviews }) => {
   return (
     <div>
-      <Accordion allowToggle defaultIndex={[0]}>
+      <Accordion allowToggle allowMultiple defaultIndex={[0]}>
         {reviews.map((review, index) => <Review review={review} key={index} />)}
       </Accordion>
     </div>

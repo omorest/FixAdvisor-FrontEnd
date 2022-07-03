@@ -1,5 +1,8 @@
 import { Link, Text } from '@chakra-ui/react'
 import { FC } from 'react'
+import { AiFillPhone } from 'react-icons/ai'
+import { CgWebsite } from 'react-icons/cg'
+import { ImLocation } from 'react-icons/im'
 import { Provider } from '../../../models'
 
 interface InfoProviderDetailsProps {
@@ -15,21 +18,29 @@ const InfoProviderDetails: FC<InfoProviderDetailsProps> = ({ provider }) => {
         </Text>
       </div>
       <div className='flex flex-col gap-3'>
-        <Text className='text-lg'>
-          {provider?.phoneNumber}
-        </Text>
+
+        <div className='flex items-center gap-2'>
+          <AiFillPhone/>
+          <Text className='text-lg'>
+            {provider?.phoneNumber}
+          </Text>
+        </div>
         {provider?.website &&
+        <div className='flex items-center gap-2'>
+          <CgWebsite />
           <Text className='text-lg'>
             <Link href={provider?.website} target='_blank' color='teal.500' >{provider?.website}</Link>
-          </Text>}
+          </Text>
+        </div>
+        }
       </div>
       <div className='flex flex-col gap-3'>
-        <Text className='font-bold text-xl'>
-            Localización
-        </Text>
-        <Text className='text-lg'>
-          {provider?.location}
-        </Text>
+        <div className='flex items-center gap-2'>
+          <ImLocation />
+          <Text className='text-lg'>
+            {provider?.location}
+          </Text>
+        </div>
       </div>
     </div>
   )

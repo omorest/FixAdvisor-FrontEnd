@@ -17,8 +17,8 @@ const Review: FC<ReviewProps> = ({ review }) => {
           <Box flex='1' textAlign='left' fontWeight={'semibold'} className='flex items-center gap-4'>
             <Image
               borderRadius='full'
-              boxSize='50px'
-              src={'https://img.freepik.com/foto-gratis/retrato-joven-sonriente-gafas_171337-4842.jpg?w=2000' || { defaultImage }}
+              boxSize='40px'
+              src={ defaultImage }
               objectFit='cover'
               alt='perfil foto'
             />
