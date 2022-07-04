@@ -1,9 +1,11 @@
 import { Image, Text } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
+import InfoClient from './components/InfoClient'
 import InfoProvider from './components/InfoProvider'
 
 const defaultImage = 'https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png'
+// const defaultImage = 'https://t4.ftcdn.net/jpg/02/88/39/29/360_F_288392925_iR4n7yqD05GfdlmSkq6gJurui6MPODxx.jpg'
 
 const Profile = () => {
   const { user } = useContext(UserContext)
@@ -20,14 +22,14 @@ const Profile = () => {
           <Image
             borderRadius='full'
             boxSize='200px'
-            src={'https://img.freepik.com/foto-gratis/retrato-joven-sonriente-gafas_171337-4842.jpg?w=2000' || { defaultImage }}
+            src= { defaultImage }
             objectFit='cover'
             alt='perfil foto'
           />
         </div>
       </div>
       {
-        user?.type === 'Provider' ? <InfoProvider user={user}/> : null
+        user?.type === 'Provider' ? <InfoProvider user={user}/> : <InfoClient user={user}/>
       }
     </div>
 

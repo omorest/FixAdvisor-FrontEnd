@@ -9,6 +9,7 @@ import CarouselImages from '../../../components/CarouselImages/CarouselImages'
 import { fetchReviews } from '../../../services/reviews.services'
 import { UserContext } from '../../../context/UserContext'
 import ReviewWrite from '../../../components/ReviewWrite/ReviewWrite'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 
 interface InfoServiceDetailsProps {
   service: Service
@@ -43,8 +44,19 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
           : null
         }
       </div>
-      <div className='font-semibold text-lg'>
+      <div className='font-semibold text-lg flex justify-between'>
         <Stars rate={service?.rate ?? 0} totalReviews={service?.totalReviews ?? 0}/>
+        { user?.type === 'Client'
+          ? <div className='text-6xl'>
+            {
+              user.favouriteServices.includes(service?.id)
+                ? <AiFillHeart className='text-[#ff595e]'/>
+                : <AiOutlineHeart />
+            }
+          </div>
+          : null
+        }
+
       </div>
       <div className='flex flex-col gap-5' >
         <Text className='font-bold text-2xl'>
