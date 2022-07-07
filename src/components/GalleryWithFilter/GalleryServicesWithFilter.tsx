@@ -29,7 +29,6 @@ const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ service
   //   onFilterServices(value)
   // }, [value])
 
-  console.log(value)
   return (
     <div className='flex flex-col gap-5 mt-10 '>
       <div className='flex gap-5'>
