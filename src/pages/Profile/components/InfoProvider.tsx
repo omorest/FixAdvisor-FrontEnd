@@ -17,7 +17,6 @@ const InfoProvider: FC<InfoProviderProps> = ({ user }) => {
   useEffect(() => {
     const request = async () => {
       const services = await fetchServicesProvider(user?.id)
-      console.log('hola')
       setServicesProvider(services)
     }
     request()

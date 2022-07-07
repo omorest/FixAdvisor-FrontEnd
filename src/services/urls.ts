@@ -1,4 +1,5 @@
-export const URL_BASE = 'http://localhost:4000/api'
+// export const URL_BASE = 'http://localhost:4000/api'
+export const URL_BASE = 'https://fixadvisor-backend.up.railway.app/api'
 export const URL_NEW_CLIENT = `${URL_BASE}/clients/new-client`
 export const URL_CLIENTS = `${URL_BASE}/clients`
 export const URL_FAVOURITES = `${URL_BASE}/favourites`
