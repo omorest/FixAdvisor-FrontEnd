@@ -14,7 +14,7 @@ const Home = () => {
   const handleSortServices = (typeSort: string) => {
     const servicesSort = [...services]
     if (typeSort === 'rate') {
-      servicesSort.sort((a, b) => b.rate - a.rate)
+      servicesSort.sort((a, b) => b.rate! - a.rate!)
     }
     if (typeSort === 'nameService' || typeSort === 'typeService') {
       servicesSort.sort((a, b) => sortByString(a[typeSort], b[typeSort]))

@@ -28,8 +28,9 @@ const Profile = () => {
           />
         </div>
       </div>
-      {
-        user?.type === 'Provider' ? <InfoProvider user={user}/> : <InfoClient user={user}/>
+      {user
+        ? user?.type === 'Provider' ? <InfoProvider user={user}/> : <InfoClient user={user}/>
+        : null
       }
     </div>
 

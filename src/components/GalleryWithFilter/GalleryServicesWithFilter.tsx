@@ -47,7 +47,7 @@ const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ service
       </div>
       <GalleryServices
         services={services}
-        favouriteServices={user?.favouriteServices || []}
+        favouriteServices={user?.type === 'Client' ? user?.favouriteServices : []}
         typeUser={user?.type || null}
         onFavouriteService={handleFavouriteServices}/>
     </div>

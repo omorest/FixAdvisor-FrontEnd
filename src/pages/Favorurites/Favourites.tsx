@@ -12,8 +12,8 @@ const Favourites = () => {
 
   const handleSortServices = (typeSort: string) => {
     const servicesSort = [...favouriteServices]
-    if (typeSort === 'rate') {
-      servicesSort.sort((a, b) => b.rate - a.rate)
+    if (typeSort === 'rate' && servicesSort) {
+      servicesSort?.sort((a, b) => b.rate! - a.rate!)
     }
     if (typeSort === 'nameService' || typeSort === 'typeService') {
       servicesSort.sort((a, b) => sortByString(a[typeSort], b[typeSort]))
