@@ -76,7 +76,10 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
         <Text className='font-bold text-2xl'>
           Opiniones
         </Text>
-        <ReviewWrite userType={user?.type || ''}/>
+        {user?.type === 'Client'
+          ? <ReviewWrite user={user} service={service}/>
+          : <Text className='font-bold'> Registrate como cliente para poder opinar de un servicio</Text>
+        }
         <Reviews reviews={reviews}/>
       </div>
     </div>

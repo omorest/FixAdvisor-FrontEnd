@@ -1,17 +1,32 @@
 import { Input, Text } from '@chakra-ui/react'
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import StarRatings from 'react-star-ratings'
+import { User } from '../../context/UserContext'
+import { Service } from '../../models'
+import { SingleReview } from '../../models/Review.model'
+import { fetchPostNewReview } from '../../services/reviews.services'
+import { uuid } from '../../utils/utils'
 
 interface ReviewWriteProps {
-  userType: string
+  user: User
+  service: Service
 }
 
-const ReviewWrite: FC<ReviewWriteProps> = ({ userType }) => {
+const ReviewWrite: FC<ReviewWriteProps> = ({ user, service }) => {
   const [rating, setRating] = useState(0)
   const [showCreateOpinion, setShowCreateOpinion] = useState(false)
+  const { register, handleSubmit } = useForm()
 
-  const ratingChanged = (newRating: number) => {
+  const handleRatingChanged = (newRating: number) => {
     setRating(newRating)
+  }
+
+  const onSubmit = (data: any) => {
+    const currentDate = new Date()
+    const currentDateString = `${currentDate.getDay()}-${currentDate.getMonth()}-${currentDate.getFullYear()}`
+    const review: SingleReview = { ...data, rate: rating, clientName: user?.name, id: uuid(), date: currentDateString }
+    fetchPostNewReview(service.id, review)
   }
 
   const handleShowOpinion = () => {
@@ -24,16 +39,21 @@ const ReviewWrite: FC<ReviewWriteProps> = ({ userType }) => {
         showCreateOpinion
           ? <div className='flex flex-col gap-5'>
             <Text className='font-bold hover:cursor-pointer' onClick={handleShowOpinion}>No quiero dar mi opinión</Text>
-            <StarRatings
-              rating={rating}
-              starRatedColor="#68D391"
-              starHoverColor="#68D399"
-              changeRating={ratingChanged}
-              numberOfStars={5}
-              name='rating'
-              starDimension='30px'
-            />
-            <Input placeholder='Escribe tu opinión aquí'></Input>
+            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-5'>
+              <StarRatings
+                rating={rating}
+                starRatedColor="#68D391"
+                starHoverColor="#68D399"
+                changeRating={handleRatingChanged}
+                numberOfStars={5}
+                name='rating'
+                starDimension='30px'
+              />
+              <div className='flex justify-between'>
+                <Input placeholder='Escribe tu opinión aquí' width="80%" {...register('opinion')}></Input>
+                <Input bgColor='white' type="submit" color='white' bgGradient='linear(to-r, green.300, green.300)' width="20%" disabled={rating < 1} className='font-bold cursor-pointer'/>
+              </div>
+            </form>
           </div>
           : <div className='flex flex-col gap-5'>
             <Text className='font-bold hover:cursor-pointer' onClick={handleShowOpinion}>Quiero dar mi opinión</Text>
