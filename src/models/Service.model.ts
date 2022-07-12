@@ -7,7 +7,7 @@ export interface Service {
   description: string
   typeService: TypeServices
   urlsImagesService?: string[]
-  rateStarts?: [number, number, number, number, number]
+  rateStars?: [number, number, number, number, number]
   rate?: number
   totalReviews?: number
 }

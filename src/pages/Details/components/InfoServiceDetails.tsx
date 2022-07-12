@@ -45,7 +45,10 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
         }
       </div>
       <div className='font-semibold text-lg flex justify-between'>
-        <Stars rate={service?.rate ?? 0} totalReviews={service?.totalReviews ?? 0}/>
+        <div className='flex items-center gap-4'>
+          <Text fontSize="4xl">{service?.rate}</Text>
+          <Stars rate={service?.rate ?? 0} totalReviews={service?.totalReviews ?? 0}/>
+        </div>
         { user?.type === 'Client'
           ? <div className='text-6xl'>
             {
@@ -56,7 +59,6 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
           </div>
           : null
         }
-
       </div>
       <div className='flex flex-col gap-5' >
         <Text className='font-bold text-2xl'>

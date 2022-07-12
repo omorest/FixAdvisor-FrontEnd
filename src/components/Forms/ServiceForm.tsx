@@ -23,7 +23,7 @@ const ServiceForm = () => {
       providerId: user?.id,
       id: uuid(),
       urlsImagesService: [],
-      rateStarts: [0, 0, 0, 0, 0],
+      rateStars: [0, 0, 0, 0, 0],
       rate: 0,
       totalReviews: 0
     }
