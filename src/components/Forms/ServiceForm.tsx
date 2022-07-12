@@ -17,18 +17,35 @@ const ServiceForm = () => {
   const { user } = useContext(UserContext)
   const navigate = useNavigate()
 
-  const onSubmit = (data: any) => {
-    const newService = {
-      ...data,
-      providerId: user?.id,
-      id: uuid(),
-      urlsImagesService: [],
-      rateStars: [0, 0, 0, 0, 0],
-      rate: 0,
-      totalReviews: 0
-    }
-    fetchPostNewService(newService)
-    navigate(`/details/${newService.id}`)
+  const onSubmit = async (data: any) => {
+    const imagesFiles = data.urlsImagesService
+    const imagesFilesKeys = Object.keys(imagesFiles)
+
+    const urlsImagesPromises = imagesFilesKeys.map(async (keyImage) => {
+      const dataImages = new FormData()
+      dataImages.append('file', imagesFiles[keyImage])
+      dataImages.append('upload_preset', 'fixAdvisor')
+      const res = await fetch('https://api.cloudinary.com/v1_1/fixadvisor/image/upload', {
+        method: 'POST',
+        body: dataImages
+      })
+      const { secure_url } = await res.json()
+      return secure_url
+    })
+
+    Promise.all(urlsImagesPromises).then(urlImages => {
+      const newService = {
+        ...data,
+        providerId: user?.id,
+        id: uuid(),
+        urlsImagesService: urlImages || [],
+        rateStars: [0, 0, 0, 0, 0],
+        rate: 0,
+        totalReviews: 0
+      }
+      fetchPostNewService(newService)
+      navigate(`/details/${newService.id}`)
+    })
   }
 
   return (
@@ -59,6 +76,8 @@ const ServiceForm = () => {
               file:bg-[#e2e8f0] file:text-[#0E141B]
               hover:file:bg-[#CDF2CA] hover:file:cursor-pointer hover:cursor-pointer"
             multiple
+            required
+            {...register('urlsImagesService')}
           />
         </div>
         <Input bgColor='white' type="submit" color='white' bgGradient='linear(to-r, green.300, green.300)' className='font-bold cursor-pointer'/>

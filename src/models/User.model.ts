@@ -4,6 +4,7 @@ export interface Client {
   id: string
   favouriteServices: string[]
   type: 'Client'
+  urlProfileImage?: string
 }
 
 export interface Provider {
@@ -12,7 +13,7 @@ export interface Provider {
   company: string
   location: string
   phoneNumber: number
-  logoImage: string
+  urlProfileImage?: string
   id: string
   servicesIds?: string[]
   website?: string

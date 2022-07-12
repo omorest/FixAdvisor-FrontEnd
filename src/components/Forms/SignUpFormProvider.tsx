@@ -7,8 +7,16 @@ const SignUpFormProvider = () => {
   const { register, handleSubmit } = useForm()
   const navigate = useNavigate()
 
-  const onSubmit = (data: any) => {
-    createUserProvider({ ...data }, data.password)
+  const onSubmit = async (data: any) => {
+    const dataImages = new FormData()
+    dataImages.append('file', data.urlProfileImage[0])
+    dataImages.append('upload_preset', 'fixAdvisor')
+    const res = await fetch('https://api.cloudinary.com/v1_1/fixadvisor/image/upload', {
+      method: 'POST',
+      body: dataImages
+    })
+    const file = await res.json()
+    createUserProvider({ ...data, urlProfileImage: file.secure_url }, data.password)
     navigate('/login')
   }
 
@@ -26,10 +34,12 @@ const SignUpFormProvider = () => {
         <div className='flex flex-col gap-2'>
           <Text>Logo de la compañía</Text>
           <input type="file"
+            multiple
             className="block w-full text-sm text-gray-500 file:mr-4 file:py-2
               file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold
               file:bg-[#e2e8f0] file:text-[#0E141B]
               hover:file:bg-[#CDF2CA] hover:file:cursor-pointer hover:cursor-pointer"
+            {...register('urlProfileImage')}
           />
         </div>
         <Input bgColor='white' type="submit" value='Acceder' color='white' bgGradient='linear(to-r, green.300, green.300)' className='font-bold cursor-pointer'/>
