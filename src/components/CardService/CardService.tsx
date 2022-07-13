@@ -9,18 +9,19 @@ import { GrEdit } from 'react-icons/gr'
 import Stars from '../Stars/Stars'
 import CarouselImages from '../CarouselImages/CarouselImages'
 import { fetchDeleteService } from '../../services'
+import { User } from '../../context/UserContext'
 
 const DEFAULT_IMAGE = 'https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png'
 
 interface CardServiceProps {
   service: Service
   favouriteServices: string[]
-  typeUser: null | 'Client' | 'Provider'
+  user: User
   onFavouriteService: (service: string) => void
   onDeleteService?: (services: Service[]) => void
 }
 
-const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUser, onFavouriteService, onDeleteService }) => {
+const CardService: FC<CardServiceProps> = ({ service, favouriteServices, user, onFavouriteService, onDeleteService }) => {
   const typeService: string = optionsTypeServices[service.typeService]
   const isFavourite = favouriteServices?.includes(service.id)
 
@@ -82,7 +83,7 @@ const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUse
             <div className='w-[100%] text-s font-medium'>
               <Stars rate={service?.rate ?? 0} inLine={false} starDimension='20px' totalReviews={service?.totalReviews ?? 0}/>
             </div>
-            { typeUser === 'Client'
+            { user?.type === 'Client'
               ? <div className='text-3xl'>
                 {
                   isFavourite
@@ -92,7 +93,7 @@ const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUse
               </div>
               : null
             }
-            { typeUser === 'Provider'
+            { user?.type === 'Provider' && user?.servicesIds?.includes(service.id)
               ? <div className='flex gap-3 text-xl'>
                 <Link to='/editService' state={service.id} onClick={handleUpdate}>
                   <GrEdit />
