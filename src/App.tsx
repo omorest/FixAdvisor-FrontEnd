@@ -17,8 +17,11 @@ function App () {
   const [user, setUser] = useState<User>(null)
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user') ?? '')
-    setUserContext(user)
+    const item = localStorage.getItem('user')
+    if (item) {
+      const user = JSON.parse(localStorage.getItem('user') ?? '')
+      setUserContext(user)
+    }
   }, [])
 
   const setUserContext = (user: User) => {
