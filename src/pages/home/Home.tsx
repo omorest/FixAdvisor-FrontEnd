@@ -8,28 +8,33 @@ import { sortByString } from '../../utils/utils'
 
 const Home = () => {
   const [services, setServices] = useState<Service[]>([])
+  const [servicesFiltered, setServicesFiltered] = useState<Service[]>([])
   const [inputValue, setInputValue] = useState('')
   const handleSearch = (inputValue: string) => setInputValue(inputValue)
 
   const handleSortServices = (typeSort: string) => {
-    const servicesSort = [...services]
+    const servicesSort = [...servicesFiltered]
     if (typeSort === 'rate') {
       servicesSort.sort((a, b) => b.rate! - a.rate!)
     }
     if (typeSort === 'nameService' || typeSort === 'typeService') {
       servicesSort.sort((a, b) => sortByString(a[typeSort], b[typeSort]))
     }
-    setServices(servicesSort)
+    setServicesFiltered(servicesSort)
   }
 
-  const handleFilterServices = (typeServices: string[]) => {
-    const filteredServices = services.filter((service: Service) => typeServices.includes(service.typeService))
-    setServices(filteredServices)
+  const handleFilterServices = (typeServices: any[]) => {
+    const filteredServices = services.filter((service: Service) => {
+      console.log(service.typeService)
+      return typeServices.includes(service.typeService)
+    })
+    setServicesFiltered(filteredServices)
   }
 
   useEffect(() => {
     fetchServices().then(res => {
       setServices(res)
+      setServicesFiltered(res)
     })
   }, [])
 
@@ -50,7 +55,7 @@ const Home = () => {
         <Search onSearch={handleSearch}/>
       </div>
       {services.length > 0
-        ? <GalleryServicesWithFilter services={services} onSortServices={handleSortServices} onFilterServices={handleFilterServices}/>
+        ? <GalleryServicesWithFilter services={servicesFiltered} onSortServices={handleSortServices} onFilterServices={handleFilterServices}/>
         : <Text className='text-2xl mt-10'>No se han encontrado servicios</Text>
       }
     </div>

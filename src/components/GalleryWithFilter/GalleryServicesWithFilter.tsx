@@ -9,7 +9,7 @@ import { Checkbox, CheckboxGroup, Stack, useCheckboxGroup } from '@chakra-ui/rea
 interface GalleryServicesWithFilterProps {
   services: Service[]
   onSortServices: (typeSort: string) => void
-  onFilterServices?: (typeServices: string[]) => void
+  onFilterServices?: (typeServices: any[]) => void
 }
 
 const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ services, onSortServices, onFilterServices }) => {
@@ -25,9 +25,17 @@ const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ service
     }
   }
 
-  // useEffect(() => {
-  //   onFilterServices(value)
-  // }, [value])
+  useEffect(() => {
+    if (value.length === 0) {
+      onFilterServices?.([
+        'carpentry',
+        'plumbing',
+        'brickwork'
+      ])
+    } else {
+      onFilterServices?.(value)
+    }
+  }, [value])
 
   return (
     <div className='flex flex-col gap-5 mt-10 '>
@@ -37,8 +45,8 @@ const GalleryServicesWithFilter: FC<GalleryServicesWithFilterProps> = ({ service
           onFilterServices
             ? <CheckboxGroup colorScheme='green'>
               <Stack spacing={[1, 5]} direction={['column', 'row']}>
-                <Checkbox {...getCheckboxProps({ value: 'Carpentry' })}>Carpintería</Checkbox>
-                <Checkbox {...getCheckboxProps({ value: 'Plumbing' })}>Fontanería</Checkbox>
+                <Checkbox {...getCheckboxProps({ value: 'carpentry' })}>Carpintería</Checkbox>
+                <Checkbox {...getCheckboxProps({ value: 'plumbing' })}>Fontanería</Checkbox>
                 <Checkbox {...getCheckboxProps({ value: 'brickwork' })}>Albañilería</Checkbox>
               </Stack>
             </CheckboxGroup>
