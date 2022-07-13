@@ -1,5 +1,5 @@
 import { Link, Text } from '@chakra-ui/react'
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { AiFillPhone } from 'react-icons/ai'
 import { CgWebsite } from 'react-icons/cg'
 import { ImLocation } from 'react-icons/im'

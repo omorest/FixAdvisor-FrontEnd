@@ -4,7 +4,7 @@ import GalleryServices from '../../../components/GalleryServices/GalleryServices
 import { Provider, Service } from '../../../models'
 import { fetchServicesProvider } from '../../../services'
 import EditSpecificInfoProvider from './EditSpecificInfoProvider'
-import SpecificInfoProvider from './specificInfoProvider'
+import SpecificInfoProvider from './SpecificInfoProvider'
 
 interface InfoProviderProps {
   user: Provider
