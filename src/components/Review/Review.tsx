@@ -1,21 +1,22 @@
 import { AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Image, Input, Text } from '@chakra-ui/react'
-import { FC, useContext } from 'react'
+import { FC, useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import StarRatings from 'react-star-ratings'
 import { UserContext } from '../../context/UserContext'
 import { SingleReview } from '../../models/Review.model'
-import { fetchPostNewReview } from '../../services/reviews.services'
 
 const defaultImage = 'https://ceslava.s3-accelerate.amazonaws.com/2016/04/mistery-man-gravatar-wordpress-avatar-persona-misteriosa-510x510.png'
 
 interface ReviewProps {
   review: SingleReview
   serviceId: string
+  onReloadreviews: (review: SingleReview) => void
 }
 
-const Review: FC<ReviewProps> = ({ review, serviceId }) => {
+const Review: FC<ReviewProps> = ({ review, serviceId, onReloadreviews }) => {
   const { register, handleSubmit } = useForm()
   const { user } = useContext(UserContext)
+  const [isDone, setIsDone] = useState(false)
 
   const onSubmit = (data: any) => {
     const reviewUpdated: SingleReview = {
@@ -23,7 +24,9 @@ const Review: FC<ReviewProps> = ({ review, serviceId }) => {
       responseProvider: data.responseProvider,
       providerName: user?.name
     }
-    fetchPostNewReview(serviceId, reviewUpdated)
+    setIsDone(false)
+    onReloadreviews(reviewUpdated)
+    setIsDone(true)
   }
 
   return (
@@ -61,7 +64,7 @@ const Review: FC<ReviewProps> = ({ review, serviceId }) => {
             <Text fontStyle={'italic'}> {review.opinion}</Text>
           </div>
           {
-            (user && user.type === 'Provider' && user.servicesIds?.includes(serviceId))
+            (user && user.type === 'Provider' && user.servicesIds?.includes(serviceId) && !review.responseProvider && !isDone)
               ? <form onSubmit={handleSubmit(onSubmit)}>
 
                 <div className='mt-4 ml-4 flex justify-between'>
@@ -71,7 +74,6 @@ const Review: FC<ReviewProps> = ({ review, serviceId }) => {
               </form>
               : null
           }
-
           <div className='mt-4 ml-4'>
             <Text fontWeight={'semibold'} >{review.providerName}</Text>
             <Text fontStyle={'italic'}> {review.responseProvider}</Text>

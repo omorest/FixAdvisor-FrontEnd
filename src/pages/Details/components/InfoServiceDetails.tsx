@@ -92,7 +92,7 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
           ? <ReviewWrite user={user} service={service} onReloadreviews={handleReloadReviews} isReviewDone={isReviewDone}/>
           : <Text className='font-bold'> Registrate como cliente para poder opinar de un servicio</Text>
         }
-        <Reviews reviews={reviews} serviceId={service?.id}/>
+        <Reviews reviews={reviews} serviceId={service?.id} onReloadreviews={handleReloadReviews}/>
       </div>
     </div>
   )
