@@ -11,6 +11,7 @@ import Home from './pages/home/Home'
 import Details from './pages/Details/Details'
 import Favourites from './pages/Favorurites/Favourites'
 import Profile from './pages/Profile/Profile'
+import EditService from './pages/EditService/EditService'
 
 function App () {
   const [user, setUser] = useState<User>(null)
@@ -31,6 +32,7 @@ function App () {
               <Route path='/favourites/' element={<Favourites />} />
               <Route path='/details/:id/' element={<Details />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/editService' element={<EditService />} />
             </Routes>
           </div>
         </div>
