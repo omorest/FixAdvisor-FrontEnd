@@ -39,7 +39,7 @@ const InfoProvider: FC<InfoProviderProps> = ({ user }) => {
           </div>
           {
             isEditingInformation
-              ? <EditSpecificInfoProvider user={user}/>
+              ? <EditSpecificInfoProvider user={user} onSave={() => setIsEditingInformation(false)}/>
               : <SpecificInfoProvider user={user}/>
           }
 

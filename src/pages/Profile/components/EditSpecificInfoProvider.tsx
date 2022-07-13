@@ -1,21 +1,25 @@
 import { Input } from '@chakra-ui/react'
-import { FC } from 'react'
+import { FC, useContext } from 'react'
 import { useForm } from 'react-hook-form'
+import { UserContext } from '../../../context/UserContext'
 import { Provider } from '../../../models'
 import { fetchUpdateProvider } from '../../../services'
 import { filterDataObjectWithInfo } from '../../../utils/utils'
 
 interface EditSpecificInfoProviderProps {
   user: Provider
+  onSave: () => void
 }
 
-const EditSpecificInfoProvider: FC<EditSpecificInfoProviderProps> = ({ user }) => {
+const EditSpecificInfoProvider: FC<EditSpecificInfoProviderProps> = ({ user, onSave }) => {
   const { register, handleSubmit } = useForm()
+  const { setUserContext } = useContext(UserContext)
 
   const onSubmit = (data: any) => {
     const dataFiltered = filterDataObjectWithInfo(data)
-    console.log({ ...dataFiltered, id: user.id })
     fetchUpdateProvider({ ...dataFiltered, id: user.id } as Provider)
+    setUserContext({ ...user, ...dataFiltered })
+    onSave()
   }
 
   return (
