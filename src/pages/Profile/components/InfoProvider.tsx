@@ -50,7 +50,7 @@ const InfoProvider: FC<InfoProviderProps> = ({ user }) => {
             Servicios
           </Text>
           {servicesProvider?.length > 0
-            ? <GalleryServices services={servicesProvider} typeUser={user && user?.type} onDeleteService={handleDelete}/>
+            ? <GalleryServices services={servicesProvider} user={user} onDeleteService={handleDelete}/>
             : <Text> No tienes servicios creados</Text>
           }
 
