@@ -34,10 +34,14 @@ const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUse
     console.log('prueba')
     e.stopPropagation()
   }
+
   const handleDelete = async (e: any) => {
+    const wantDelete = confirm('¿Quieres eliminar el servicio?')
     e.preventDefault()
-    const services = await fetchDeleteService(service)
-    onDeleteService?.(services)
+    if (wantDelete) {
+      const services = await fetchDeleteService(service)
+      onDeleteService?.(services)
+    }
   }
 
   return (
