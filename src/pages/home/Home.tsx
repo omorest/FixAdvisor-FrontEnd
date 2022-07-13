@@ -25,7 +25,6 @@ const Home = () => {
 
   const handleFilterServices = (typeServices: any[]) => {
     const filteredServices = services.filter((service: Service) => {
-      console.log(service.typeService)
       return typeServices.includes(service.typeService)
     })
     setServicesFiltered(filteredServices)

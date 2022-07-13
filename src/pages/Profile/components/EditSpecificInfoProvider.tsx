@@ -2,6 +2,7 @@ import { Input } from '@chakra-ui/react'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import { Provider } from '../../../models'
+import { fetchUpdateProvider } from '../../../services'
 import { filterDataObjectWithInfo } from '../../../utils/utils'
 
 interface EditSpecificInfoProviderProps {
@@ -13,8 +14,8 @@ const EditSpecificInfoProvider: FC<EditSpecificInfoProviderProps> = ({ user }) =
 
   const onSubmit = (data: any) => {
     const dataFiltered = filterDataObjectWithInfo(data)
-    console.log(data)
-    console.log(dataFiltered)
+    console.log({ ...dataFiltered, id: user.id })
+    fetchUpdateProvider({ ...dataFiltered, id: user.id } as Provider)
   }
 
   return (
