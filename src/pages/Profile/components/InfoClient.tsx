@@ -14,9 +14,9 @@ const InfoClient: FC<InfoClientProps> = ({ user }) => {
           <Text className='font-bold text-xl'>
             Información
           </Text>
-          <Text className='font text-lg hover:cursor-pointer'>
+          {/* <Text className='font text-lg hover:cursor-pointer'>
             Editar información
-          </Text>
+          </Text> */}
         </div>
 
         <div className='flex flex-col gap-2'>
@@ -37,14 +37,14 @@ const InfoClient: FC<InfoClientProps> = ({ user }) => {
               {user?.email}
             </Text>
           </div>
-          <div>
+          {/* <div>
             <Text className='text-lg font-bold'>
               Contraseña:
             </Text>
             <Text className='text-lg'>
               *****************
             </Text>
-          </div>
+          </div> */}
         </div>
 
       </div>
