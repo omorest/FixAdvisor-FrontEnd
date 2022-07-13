@@ -14,7 +14,7 @@ const InfoClient: FC<InfoClientProps> = ({ user }) => {
           <Text className='font-bold text-xl'>
             Información
           </Text>
-          <Text className='font text-lg'>
+          <Text className='font text-lg hover:cursor-pointer'>
             Editar información
           </Text>
         </div>
