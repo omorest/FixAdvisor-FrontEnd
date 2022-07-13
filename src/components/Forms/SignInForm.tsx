@@ -1,14 +1,19 @@
 import { Input, Text } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import { signInUser } from '../../firebase/utilsFirebase'
 
 const SignInForm = () => {
   const { register, handleSubmit } = useForm()
   const { setUserContext } = useContext(UserContext)
-  const onSubmit = (data: any) => signInUser(data.email, data.password, setUserContext)
+  const navigate = useNavigate()
+
+  const onSubmit = (data: any) => {
+    signInUser(data.email, data.password, setUserContext)
+    navigate('/')
+  }
 
   return (
     <div className='flex flex-col items-center justify-center gap-10 mt-20 mb-20' >

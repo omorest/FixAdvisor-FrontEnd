@@ -6,7 +6,10 @@ import { UserContext } from '../../context/UserContext'
 const Navbar = () => {
   const { user, setUserContext } = useContext(UserContext)
 
-  const handleLogOut = () => setUserContext(null)
+  const handleLogOut = () => {
+    setUserContext(null)
+    localStorage.removeItem('user')
+  }
 
   const hoverStyle = 'hover:text-[white] hover:bg-[#68D391] p-2 rounded-[5px]'
 

@@ -5,7 +5,7 @@ import Login from './pages/Login/Login'
 import SignUp from './pages/SignUp/SignUp'
 import NewServicePage from './pages/NewServicePage/NewServicePage'
 import { User, UserContext } from './context/UserContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/home/Home'
 import Details from './pages/Details/Details'
@@ -16,7 +16,15 @@ import EditService from './pages/EditService/EditService'
 function App () {
   const [user, setUser] = useState<User>(null)
 
-  const setUserContext = (user: User) => setUser(user)
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user') ?? '')
+    setUserContext(user)
+  }, [])
+
+  const setUserContext = (user: User) => {
+    setUser(user)
+    localStorage.setItem('user', JSON.stringify(user))
+  }
 
   return (
     <UserContext.Provider value={{ user, setUserContext }}>
