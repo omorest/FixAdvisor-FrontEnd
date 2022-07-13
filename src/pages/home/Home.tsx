@@ -41,11 +41,11 @@ const Home = () => {
   useEffect(() => {
     if (inputValue === '') {
       fetchServices().then(res => {
-        setServices(res)
+        setServicesFiltered(res)
       })
     } else {
       fetchSearchService(inputValue)
-        .then(res => setServices(res))
+        .then(res => setServicesFiltered(res))
     }
   }, [inputValue])
 
