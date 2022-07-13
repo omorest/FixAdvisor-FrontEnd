@@ -4,8 +4,11 @@ import { Service } from '../../models'
 import { Link } from 'react-router-dom'
 import { colorTypeProvider, optionsTypeServices } from '../../utils/typeServiceUtils'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
+import { GoTrashcan } from 'react-icons/go'
+import { GrEdit } from 'react-icons/gr'
 import Stars from '../Stars/Stars'
 import CarouselImages from '../CarouselImages/CarouselImages'
+import { fetchDeleteService } from '../../services'
 
 const DEFAULT_IMAGE = 'https://latarta.com.co/wp-content/uploads/2018/06/default-placeholder.png'
 
@@ -26,6 +29,14 @@ const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUse
   }
 
   const imagesServices = service?.urlsImagesService && service?.urlsImagesService?.length > 0 ? service?.urlsImagesService : [DEFAULT_IMAGE]
+  const handleUpdate = (e: any) => {
+    console.log('prueba')
+    e.stopPropagation()
+  }
+  const handleDelete = (e: any) => {
+    e.preventDefault()
+    fetchDeleteService(service)
+  }
 
   return (
     <Link to={`/details/${service.id}`}>
@@ -72,6 +83,15 @@ const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUse
                     ? <AiFillHeart onClick={handleClickFavourite} className='text-[#ff595e]'/>
                     : <AiOutlineHeart onClick={handleClickFavourite}/>
                 }
+              </div>
+              : null
+            }
+            { typeUser === 'Provider'
+              ? <div className='flex gap-3 text-xl'>
+                <Link to='/editService' state={service.id} onClick={handleUpdate}>
+                  <GrEdit />
+                </Link>
+                <GoTrashcan onClick={handleDelete}/>
               </div>
               : null
             }
