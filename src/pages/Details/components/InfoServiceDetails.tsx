@@ -6,7 +6,7 @@ import { Service } from '../../../models'
 import { SingleReview } from '../../../models/Review.model'
 import { colorTypeProvider, optionsTypeServices } from '../../../utils/typeServiceUtils'
 import CarouselImages from '../../../components/CarouselImages/CarouselImages'
-import { fetchReviews } from '../../../services/reviews.services'
+import { fetchPostNewReview, fetchReviews } from '../../../services/reviews.services'
 import { UserContext } from '../../../context/UserContext'
 import ReviewWrite from '../../../components/ReviewWrite/ReviewWrite'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
@@ -17,6 +17,7 @@ interface InfoServiceDetailsProps {
 
 const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
   const [reviews, setReviews] = useState<SingleReview[]>([])
+  const [isReviewDone, setIsReviewDone] = useState(false)
   const { user } = useContext(UserContext)
 
   useEffect(() => {
@@ -28,6 +29,15 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
     }
     request()
   }, [service?.id])
+
+  const handleReloadReviews = async (review: SingleReview) => {
+    setIsReviewDone(false)
+    if (service?.id) {
+      const reviews = await fetchPostNewReview(service.id, review)
+      setReviews(reviews.reviews)
+      setIsReviewDone(true)
+    }
+  }
 
   return (
     <div className='bg-white p-10 flex flex-col gap-10 min-w-[60%] rounded-lg shadow-xl mb-10'>
@@ -79,7 +89,7 @@ const InfoServiceDetails: FC<InfoServiceDetailsProps> = ({ service }) => {
           Opiniones
         </Text>
         {user?.type === 'Client'
-          ? <ReviewWrite user={user} service={service}/>
+          ? <ReviewWrite user={user} service={service} onReloadreviews={handleReloadReviews} isReviewDone={isReviewDone}/>
           : <Text className='font-bold'> Registrate como cliente para poder opinar de un servicio</Text>
         }
         <Reviews reviews={reviews} serviceId={service?.id}/>

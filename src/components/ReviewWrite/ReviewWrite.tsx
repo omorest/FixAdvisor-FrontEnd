@@ -5,15 +5,16 @@ import StarRatings from 'react-star-ratings'
 import { User } from '../../context/UserContext'
 import { Service } from '../../models'
 import { SingleReview } from '../../models/Review.model'
-import { fetchPostNewReview } from '../../services/reviews.services'
 import { uuid } from '../../utils/utils'
 
 interface ReviewWriteProps {
   user: User
   service: Service
+  onReloadreviews: (review: SingleReview) => void
+  isReviewDone: boolean
 }
 
-const ReviewWrite: FC<ReviewWriteProps> = ({ user, service }) => {
+const ReviewWrite: FC<ReviewWriteProps> = ({ user, service, onReloadreviews, isReviewDone }) => {
   const [rating, setRating] = useState(0)
   const [showCreateOpinion, setShowCreateOpinion] = useState(false)
   const { register, handleSubmit } = useForm()
@@ -22,15 +23,19 @@ const ReviewWrite: FC<ReviewWriteProps> = ({ user, service }) => {
     setRating(newRating)
   }
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     const currentDate = new Date()
-    const currentDateString = `${currentDate.getDay()}-${currentDate.getMonth()}-${currentDate.getFullYear()}`
+    const currentDateString = `${currentDate.getDate()}-${currentDate.getMonth() + 1}-${currentDate.getFullYear()}`
     const review: SingleReview = { ...data, rate: rating, clientName: user?.name, id: uuid(), date: currentDateString }
-    fetchPostNewReview(service.id, review)
+    onReloadreviews(review)
   }
 
   const handleShowOpinion = () => {
     setShowCreateOpinion(!showCreateOpinion)
+  }
+
+  if (isReviewDone) {
+    return <Text>Opinión guardada</Text>
   }
 
   return (

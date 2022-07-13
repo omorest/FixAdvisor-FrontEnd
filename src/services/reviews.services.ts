@@ -7,13 +7,13 @@ export const fetchReviews = async (serviceId: string) => {
   return reviews
 }
 
-export const fetchPostNewReview = async (serviceId: string, data: SingleReview) => {
-  fetch(`${URL_NEW_REVIEW_SERVICE}/${serviceId}`, {
+export const fetchPostNewReview = async (serviceId: string, data: SingleReview): Promise<any> => {
+  return fetch(`${URL_NEW_REVIEW_SERVICE}/${serviceId}`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-type': 'application/json; charset=UTF-8' }
   })
     .then(response => response.json())
-    .then(json => console.log(json))
+    .then(json => json)
     .catch(err => console.log(err))
 }
