@@ -17,9 +17,10 @@ interface CardServiceProps {
   favouriteServices: string[]
   typeUser: null | 'Client' | 'Provider'
   onFavouriteService: (service: string) => void
+  onDeleteService?: (services: Service[]) => void
 }
 
-const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUser, onFavouriteService }) => {
+const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUser, onFavouriteService, onDeleteService }) => {
   const typeService: string = optionsTypeServices[service.typeService]
   const isFavourite = favouriteServices?.includes(service.id)
 
@@ -33,9 +34,10 @@ const CardService: FC<CardServiceProps> = ({ service, favouriteServices, typeUse
     console.log('prueba')
     e.stopPropagation()
   }
-  const handleDelete = (e: any) => {
+  const handleDelete = async (e: any) => {
     e.preventDefault()
-    fetchDeleteService(service)
+    const services = await fetchDeleteService(service)
+    onDeleteService?.(services)
   }
 
   return (

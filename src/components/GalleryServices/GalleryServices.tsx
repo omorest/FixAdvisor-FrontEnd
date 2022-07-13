@@ -6,12 +6,13 @@ interface GalleryServicesProps {
   favouriteServices?: string[]
   typeUser: null | 'Client' | 'Provider'
   onFavouriteService?: (service: string) => void
+  onDeleteService?: (services: Service[]) => void
 }
 
-const GalleryServices = ({ services, favouriteServices, typeUser, onFavouriteService }: GalleryServicesProps) => {
+const GalleryServices = ({ services, favouriteServices, typeUser, onFavouriteService, onDeleteService }: GalleryServicesProps) => {
   return (
     <div className='flex gap-10 flex-wrap'>
-      {services.map((service) => <CardService service={service} favouriteServices={favouriteServices || []} typeUser={typeUser} onFavouriteService={onFavouriteService!} key={service.id}/>)}
+      {services.map((service) => <CardService service={service} favouriteServices={favouriteServices || []} typeUser={typeUser} onFavouriteService={onFavouriteService!} onDeleteService={onDeleteService} key={service.id}/>)}
     </div>
   )
 }

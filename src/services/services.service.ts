@@ -37,17 +37,17 @@ export const fetchSearchService = async (input: string) => {
 }
 
 export const fetchDeleteService = async (service: Service) => {
-  await fetch(URL_DELETE_SERVICE, {
+  return fetch(URL_DELETE_SERVICE, {
     method: 'DELETE',
     body: JSON.stringify(service),
     headers: { 'Content-type': 'application/json; charset=UTF-8' }
   }).then(response => response.json())
-    .then(json => console.log(json))
+    .then(json => json)
     .catch(err => console.log(err))
 }
 
 export const fetchUpdateService = async (service: Service) => {
-  await fetch(URL_UPDATE_SERVICE, {
+  return fetch(URL_UPDATE_SERVICE, {
     method: 'PUT',
     body: JSON.stringify(service),
     headers: { 'Content-type': 'application/json; charset=UTF-8' }

@@ -23,6 +23,7 @@ const InfoProvider: FC<InfoProviderProps> = ({ user }) => {
   }, [])
 
   const handleEditInformation = () => setIsEditingInformation(!isEditingInformation)
+  const handleDelete = (services: Service[]) => setServicesProvider(services)
 
   return (
     <div className='bg-white p-10 flex flex-col gap-10 w-[80%] rounded-lg shadow-xl'>
@@ -49,7 +50,7 @@ const InfoProvider: FC<InfoProviderProps> = ({ user }) => {
             Servicios
           </Text>
           {servicesProvider?.length > 0
-            ? <GalleryServices services={servicesProvider} typeUser={user && user?.type} />
+            ? <GalleryServices services={servicesProvider} typeUser={user && user?.type} onDeleteService={handleDelete}/>
             : <Text> No tienes servicios creados</Text>
           }
 
