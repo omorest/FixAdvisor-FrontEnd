@@ -22,8 +22,9 @@ const EditService: FC<EditServiceProps> = () => {
   const state = location.state
 
   const onSubmit = (data: any) => {
-    fetchUpdateService({ ...data, id: state })
-    navigate(`/details/${state}`)
+    fetchUpdateService({ ...data, id: state }).then(res => {
+      navigate(`/details/${state}`)
+    })
   }
 
   return (
