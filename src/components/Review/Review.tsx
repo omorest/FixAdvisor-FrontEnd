@@ -29,6 +29,10 @@ const Review: FC<ReviewProps> = ({ review, serviceId, onReloadreviews }) => {
     setIsDone(true)
   }
 
+  if (isDone) {
+    return null
+  }
+
   return (
     <>
       <AccordionItem>
