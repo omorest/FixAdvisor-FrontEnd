@@ -23,7 +23,10 @@ const InfoProvider: FC<InfoProviderProps> = ({ user }) => {
   }, [])
 
   const handleEditInformation = () => setIsEditingInformation(!isEditingInformation)
-  const handleDelete = (services: Service[]) => setServicesProvider(services)
+  const handleDelete = async (services: Service[]) => {
+    const servicess = await fetchServicesProvider(user?.id)
+    setServicesProvider(servicess)
+  }
 
   return (
     <div className='bg-white p-10 flex flex-col gap-10 w-[80%] rounded-lg shadow-xl'>
