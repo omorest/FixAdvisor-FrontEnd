@@ -12,6 +12,7 @@ import Details from './pages/Details/Details'
 import Favourites from './pages/Favorurites/Favourites'
 import Profile from './pages/Profile/Profile'
 import EditService from './pages/EditService/EditService'
+import Footer from './components/Footer/Footer'
 
 function App () {
   const [user, setUser] = useState<User>(null)
@@ -31,9 +32,9 @@ function App () {
 
   return (
     <UserContext.Provider value={{ user, setUserContext }}>
-      <Container maxW='100%' padding={0} backgroundColor='#f9fafb' >
+      <Container maxW='100%' padding={0} backgroundColor='#f9fafb'>
         <Navbar />
-        <div className='flex justify-center'>
+        <div className='flex justify-center mb-10'>
           <div className='w-[80%]'>
             <Routes>
               <Route path='/' element={<Home />} />
@@ -47,6 +48,7 @@ function App () {
             </Routes>
           </div>
         </div>
+        <Footer />
       </Container>
     </UserContext.Provider>
   )
