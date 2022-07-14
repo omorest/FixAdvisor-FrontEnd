@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
+import { Provider } from '../../models'
 import { fetchPostNewService } from '../../services'
 import { uuid } from '../../utils/utils'
 
@@ -14,7 +15,8 @@ const optionsTypeServices = [
 
 const ServiceForm = () => {
   const { register, handleSubmit } = useForm()
-  const { user } = useContext(UserContext)
+  const user = useContext(UserContext).user as Provider
+  const setUserContext = useContext(UserContext).setUserContext
   const navigate = useNavigate()
 
   const onSubmit = async (data: any) => {
@@ -43,8 +45,10 @@ const ServiceForm = () => {
         rate: 0,
         totalReviews: 0
       }
-      fetchPostNewService(newService)
-      navigate(`/details/${newService.id}`)
+      fetchPostNewService(newService).then(res => {
+        setUserContext({ ...user, servicesIds: [...user?.servicesIds!, newService?.id] } as Provider)
+        navigate(`/details/${newService.id}`)
+      })
     })
   }
 

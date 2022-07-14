@@ -20,7 +20,7 @@ export const fetchServicesProvider = async (providerId: string | undefined) => {
 }
 
 export const fetchPostNewService = (data: Service) => {
-  fetch(URL_NEW_SERVICE, {
+  return fetch(URL_NEW_SERVICE, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-type': 'application/json; charset=UTF-8' }
