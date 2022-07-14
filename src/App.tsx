@@ -48,7 +48,7 @@ function App () {
             </Routes>
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </Container>
     </UserContext.Provider>
   )
